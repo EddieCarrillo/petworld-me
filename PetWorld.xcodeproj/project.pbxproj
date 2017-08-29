@@ -42,6 +42,11 @@
 		1F73F95D1F3373AD002AA24B /* PublicPostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73F95C1F3373AD002AA24B /* PublicPostCollectionViewCell.swift */; };
 		1F73F95F1F337999002AA24B /* MyPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73F95E1F337999002AA24B /* MyPostViewController.swift */; };
 		1F73F9611F33B93E002AA24B /* ProfileViewInfoTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73F9601F33B93E002AA24B /* ProfileViewInfoTabBarController.swift */; };
+		1F75B0481F55C723006542CC /* PetsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F75B0471F55C723006542CC /* PetsAPI.swift */; };
+		1F75B04A1F55C747006542CC /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F75B0491F55C747006542CC /* UserAPI.swift */; };
+		1F75B04C1F55C756006542CC /* CommentAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F75B04B1F55C756006542CC /* CommentAPI.swift */; };
+		1F75B04E1F55C771006542CC /* PostsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F75B04D1F55C771006542CC /* PostsAPI.swift */; };
+		1F75B0501F55C85C006542CC /* FileAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F75B04F1F55C85C006542CC /* FileAPI.swift */; };
 		1F7D42551ED93B9E00E4B278 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D42541ED93B9E00E4B278 /* GalleryViewController.swift */; };
 		1F7D42571ED93C3400E4B278 /* PhotoCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D42561ED93C3400E4B278 /* PhotoCaptureViewController.swift */; };
 		1F7D42591ED93CAD00E4B278 /* GalleryItemCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D42581ED93CAD00E4B278 /* GalleryItemCellCollectionViewCell.swift */; };
@@ -135,6 +140,11 @@
 		1F73F95C1F3373AD002AA24B /* PublicPostCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicPostCollectionViewCell.swift; sourceTree = "<group>"; };
 		1F73F95E1F337999002AA24B /* MyPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPostViewController.swift; sourceTree = "<group>"; };
 		1F73F9601F33B93E002AA24B /* ProfileViewInfoTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewInfoTabBarController.swift; sourceTree = "<group>"; };
+		1F75B0471F55C723006542CC /* PetsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetsAPI.swift; sourceTree = "<group>"; };
+		1F75B0491F55C747006542CC /* UserAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
+		1F75B04B1F55C756006542CC /* CommentAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentAPI.swift; sourceTree = "<group>"; };
+		1F75B04D1F55C771006542CC /* PostsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsAPI.swift; sourceTree = "<group>"; };
+		1F75B04F1F55C85C006542CC /* FileAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileAPI.swift; sourceTree = "<group>"; };
 		1F7D42541ED93B9E00E4B278 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		1F7D42561ED93C3400E4B278 /* PhotoCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureViewController.swift; sourceTree = "<group>"; };
 		1F7D42581ED93CAD00E4B278 /* GalleryItemCellCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryItemCellCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -245,6 +255,11 @@
 			isa = PBXGroup;
 			children = (
 				1F59EBEB1F1EF14C00A2CBE2 /* NetworkAPI.swift */,
+				1F75B0471F55C723006542CC /* PetsAPI.swift */,
+				1F75B0491F55C747006542CC /* UserAPI.swift */,
+				1F75B04B1F55C756006542CC /* CommentAPI.swift */,
+				1F75B04D1F55C771006542CC /* PostsAPI.swift */,
+				1F75B04F1F55C85C006542CC /* FileAPI.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -653,6 +668,7 @@
 				1F43B13A1F1029E8001D9CC1 /* PetNameViewController.swift in Sources */,
 				1F7D425D1ED9F15E00E4B278 /* VerifyPhotoViewController.swift in Sources */,
 				33751ECB1ED937AC00E60E34 /* FriendsViewController.swift in Sources */,
+				1F75B04C1F55C756006542CC /* CommentAPI.swift in Sources */,
 				33AB42701ECBB031007B7BB4 /* Post.swift in Sources */,
 				1FB386E51EA5CEEE00FBEB8E /* SignUpViewController.swift in Sources */,
 				1F7D42551ED93B9E00E4B278 /* GalleryViewController.swift in Sources */,
@@ -679,13 +695,17 @@
 				1F73F9551F324FA5002AA24B /* SearchPetsViewController.swift in Sources */,
 				1F43B13E1F102A26001D9CC1 /* TransitionToNormalViewController.swift in Sources */,
 				1F232B9B1F15BEE9002367AD /* ProfileViewController.swift in Sources */,
+				1F75B0501F55C85C006542CC /* FileAPI.swift in Sources */,
 				1F5B02111F2FCEF000BFC632 /* HomeTabViewController.swift in Sources */,
+				1F75B04A1F55C747006542CC /* UserAPI.swift in Sources */,
 				1FA451BF1F3BA9D100981FC0 /* ColorPalette.swift in Sources */,
 				1F9CF70C1F0A952D00F0F072 /* DesignableTableView.swift in Sources */,
 				1F59EBE71F1D2FBE00A2CBE2 /* EditProfileViewController.swift in Sources */,
+				1F75B0481F55C723006542CC /* PetsAPI.swift in Sources */,
 				1F73F9611F33B93E002AA24B /* ProfileViewInfoTabBarController.swift in Sources */,
 				33AB426E1ECBB015007B7BB4 /* PostTableViewCell.swift in Sources */,
 				1F15C5361E9C9813005B828B /* HomeViewController.swift in Sources */,
+				1F75B04E1F55C771006542CC /* PostsAPI.swift in Sources */,
 				1F9CF7081F08233D00F0F072 /* DesignableButton.swift in Sources */,
 				1F59EBE91F1D300400A2CBE2 /* EditProfileView.swift in Sources */,
 				1F9CF70A1F09E19900F0F072 /* TextManipulation.swift in Sources */,

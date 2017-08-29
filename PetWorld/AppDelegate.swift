@@ -25,20 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        //Register subclases
-          Pet.registerSubclass()
-          Post.registerSubclass()
-        Comment.registerSubclass()
-        
-        
-        // Override point for customization after application launch.
-        Parse.initialize(
-            with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
-                configuration.applicationId = "petworldy"
-                configuration.clientKey = "goldenchain"  // set to nil assuming you have not set clientKey
-                configuration.server = "https://petworldy.herokuapp.com/parse"
-            })
-        )
         
     //    PFUser.logOut()
         
@@ -48,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
             
         
         
-        if (User.current() != nil){
+        if (User.current != nil){
             
             
           let storyboard = UIStoryboard(name: "Main", bundle: nil)/*
@@ -165,6 +151,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         
         
     }
+    
+    
+    
+    
     
    
     

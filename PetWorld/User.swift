@@ -11,7 +11,13 @@ import Parse
 
 class User: NSObject {
     
+   class let auth_token_key = "auth_token"
+    static var current: User?
+    
      var likedPosts: [Post]?
+    
+    
+    
     
     
    

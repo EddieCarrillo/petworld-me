@@ -130,7 +130,7 @@ class ProfileView: UIView {
     
     
     func updateOwnerLabel(){
-        let currentUser = User.current()!
+        let currentUser = User.current!
         if let username = currentUser.username{
             self.ownerLabel.text = username
         }
@@ -204,44 +204,18 @@ class ProfileView: UIView {
     
     func loadProfileImage(pet: Pet){
         //Check to see if the image of the pet was already loaded previously
-        if pet.image == nil{
-            //If it was not loaded then make a request to the server.
-            let imageFile : PFFile = pet["image"] as! PFFile
-            
-            NetworkAPI.loadPicture(imageFile: imageFile, successBlock: { (image: UIImage) in
-                //Then update the UI
-                pet.image = image
-                self.updatePetUI(pet: pet)
-            })
-            
-        }else{//If it was already loaded then updat the UI
-            self.updatePetUI(pet: pet)
-        }
+       
     }
     
     func loadBackgroundImage(pet: Pet){
         //Check to see if the image of the pet was already loaded previously
-        if pet.backgroundImage == nil{
-            //If it was not loaded then make a request to the server.
-            let imageFile : PFFile = pet["backgroundImage"] as! PFFile
-            
-            NetworkAPI.loadPicture(imageFile: imageFile, successBlock: { (backgroundImage: UIImage) in
-                //Then update the UI
-                print("backgroundImage")
-                pet.backgroundImage = backgroundImage
-                self.updatePetUI(pet: pet)
-            })
-            
-        }else{//If it was already loaded then update
-            
-            self.updatePetUI(pet: pet)
-        }
+       
     }
     
     
     func updateOwnerField(){
         
-        let currentUser = User.current()
+        let currentUser = User.current
         let username = currentUser?.username
         let ownerText = ownerLabel.text!
         

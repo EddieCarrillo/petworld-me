@@ -45,7 +45,7 @@ class TransitionToNormalViewController: UIViewController {
     }
     
     func updateUI(){
-        let currentUser = User.current()
+        let currentUser = User.current
         petNamePreview.text = self.pet?.name
         profilePicturePreview.image = self.pet?.image
         
@@ -53,7 +53,7 @@ class TransitionToNormalViewController: UIViewController {
     
     @IBAction func onTappedStart(_ sender: Any) {
         //Now update the user since we have made the pet object.
-        let currentUser = User.current()!
+        let currentUser = User.current!
       
         
         NetworkAPI.createNewPet(withPet: pet!) { (success: Bool, error: Error?) in

@@ -91,57 +91,57 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBAction func onCreateAccTap(_ sender: UIButton) {
         errorDisplay.isHidden = true
         
-        print("Start adventure")
-        
-        let user = User()
-        
-        
-        let username = usernameTextField.text! ?? ""
-        
-        let password = passwordTextField.text! ?? ""
-        
-        let email = emailTextField.text! ?? ""
-        
-        if (email == "" || username == "" || password == ""){
-            
-            print("One of the fields was left blank.")
-            errorDisplay.isHidden = false
-            errorDisplay.text = "One of the above fields is blank"
-        }
-        
-        
-        
-        user.username = username
-        user.password = password
+//        print("Start adventure")
+//        
+//        let user = User()
+//        
+//        
+//        let username = usernameTextField.text! ?? ""
+//        
+//        let password = passwordTextField.text! ?? ""
+//        
+//        let email = emailTextField.text! ?? ""
+//        
+//        if (email == "" || username == "" || password == ""){
+//            
+//            print("One of the fields was left blank.")
+//            errorDisplay.isHidden = false
+//            errorDisplay.text = "One of the above fields is blank"
+//        }
+//        
         
         
-        
-        
-        user.signUpInBackground {
-            (succeeded: Bool, error: Error?) -> Void in
-            if let error = error {
-                print("Something went wrong.")
-                  print(error.localizedDescription)
-                
-                let nsError = error as! NSError
-            
-                let code = nsError.code
-                if (code == 202){
-                    print("username already exists")
-                    self.errorDisplay.isHidden = false
-                    
-                    self.errorDisplay.text = "Username already taken."
-                }
-                // Show the errorString somewhere and let the user try again.
-            } else {
-                print("Successfully signed up!")
-                // Hooray! Let them use the app now.
-                self.performSegue(withIdentifier: "TutorialSegue", sender: nil)
-                
-            }
-        }
-        
-    }
+//        user.username = username
+//        user.password = password
+//        
+//        
+//        
+//        
+//        user.signUpInBackground {
+//            (succeeded: Bool, error: Error?) -> Void in
+//            if let error = error {
+//                print("Something went wrong.")
+//                  print(error.localizedDescription)
+//                
+//                let nsError = error as! NSError
+//            
+//                let code = nsError.code
+//                if (code == 202){
+//                    print("username already exists")
+//                    self.errorDisplay.isHidden = false
+//                    
+//                    self.errorDisplay.text = "Username already taken."
+//                }
+//                // Show the errorString somewhere and let the user try again.
+//            } else {
+//                print("Successfully signed up!")
+//                // Hooray! Let them use the app now.
+//                self.performSegue(withIdentifier: "TutorialSegue", sender: nil)
+//                
+//            }
+//        }
+//        
+   }
     
     
     

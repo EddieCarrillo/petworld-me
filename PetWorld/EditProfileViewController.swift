@@ -227,16 +227,15 @@ class EditProfileViewController: UITableViewController, UIImagePickerControllerD
             pet.height = newHeight
             pet.longBio = newBio
             pet.image = newImage
-            pet["image"] = NetworkAPI.getPhotoFile(photo: newImage)
             
             // print(pet)
-            pet.saveInBackground { (bool: Bool, error: Error?) in
-                if let error = error{
-                    print("error: \(error.localizedDescription)")
-                }else{
-                    print("finished saving!!!!")
-                }
-            }
+//            pet.saveInBackground { (bool: Bool, error: Error?) in
+//                if let error = error{
+//                    print("error: \(error.localizedDescription)")
+//                }else{
+//                    print("finished saving!!!!")
+//                }
+//            }
             
             
         

@@ -12,8 +12,8 @@ import Parse
 
 class NetworkAPI: NSObject {
     
-  class let apiBaseUrl = "http://localhost:3000/api"
-  class let authBaseUrl = "http://localhost:3000/auth"
+  static let apiBaseUrl = "http://localhost:3000/api"
+  static let authBaseUrl = "http://localhost:3000/auth"
     
     
     
@@ -59,7 +59,7 @@ class NetworkAPI: NSObject {
     
     
     class func getPhotoFile(photo: UIImage?) -> PFFile? {
-        
+        return nil
     }
     
     
@@ -94,7 +94,7 @@ class NetworkAPI: NSObject {
     }
     
         
-    class func loadCurrentUser
+    class func loadCurrentUser(){}
     
    
     
@@ -194,7 +194,7 @@ class NetworkAPI: NSObject {
     
 
     
-    
+    }
     
     
 

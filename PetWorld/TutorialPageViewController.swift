@@ -61,7 +61,7 @@ class TutorialPageViewController: UIPageViewController, UIPageViewControllerDele
        
         let pet = Pet()
         self.pet = pet
-        pet.saveInBackground()
+       // pet.saveInBackground()
         
         
         ((vcArray[0])as! PetNameViewController).pet = pet

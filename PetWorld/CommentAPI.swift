@@ -6,7 +6,7 @@
 //  Copyright © 2017 GangsterSwagMuffins. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class CommentAPI{
     let path = "/comments"

@@ -14,13 +14,13 @@ class Pet: NSObject  {
   
     static var currentPetIdx = 0
     
-     var owner: PFUser?
+     var owner: User?
     
     //Profile pictre
     var image: UIImage?
     //Background profile picture
     var backgroundImage: UIImage?
-    //Name of the pet.
+    
      var name: String?
     
      var breed: String?
@@ -52,6 +52,9 @@ class Pet: NSObject  {
       var longBio: String?
     //Pet's liked post
      var likedPosts: [String: Post]?
+    
+    
+    var objectId: String?
     
    
    

@@ -122,11 +122,12 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         
         refreshAlert.addAction(UIAlertAction(title: "Logout", style: .destructive, handler: { (action: UIAlertAction!) in
             
-            User.logOutInBackground()
-            //change view controller to login view controller
-            let viewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
-            self.present(viewController!, animated: true, completion: nil)
- 
+//            User.logOutInBackground()
+//            //change view controller to login view controller
+//            let viewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
+//            self.present(viewController!, animated: true, completion: nil)
+// 
+//        
         }));
         
         present(refreshAlert, animated: true, completion: nil);
@@ -150,7 +151,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         
         if segue.identifier == "picEditor" {
             let dVc = segue.destination as! ProfilePictureEditorViewController
-            dVc.user = User.current()
+            dVc.user = User.current
             dVc.pet = self.pet
         }
     }

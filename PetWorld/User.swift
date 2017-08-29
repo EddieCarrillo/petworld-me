@@ -7,14 +7,55 @@
 //
 
 import UIKit
+import Foundation
 import Parse
 
 class User: NSObject {
     
-   class let auth_token_key = "auth_token"
+   static  let auth_token_key = "auth_token"
     static var current: User?
+    var username: String?
+    var email: String?
+    var objectId: String?
     
-     var likedPosts: [Post]?
+    
+    
+    
+    init(username: String, email: String){
+        self.username = username
+        self.email = email
+    }
+    
+    
+    
+    func toJson(with password: String) -> Data?{
+        
+       
+        var dictionary = ["username": self.username, "email": email, "password": password ]
+        
+        print("transfer to json: \(dictionary)")
+        
+        
+        do{
+            
+            
+            let jsonString: Data =  try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions.prettyPrinted)
+            
+            print(jsonString)
+            return jsonString
+        }catch{
+        
+            print("JSON processing failed")
+            return nil
+        }
+        
+           
+        
+        
+        
+    }
+    
+    
     
     
     

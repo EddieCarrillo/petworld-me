@@ -27,15 +27,15 @@ class CommentTableViewCell: UITableViewCell {
                     if let profileImage = pet.image{
                         self.profileImageView.image = profileImage
                     }else{
-                        let petImage: PFFile? = pet["image"] as? PFFile
-                        if let petImage = petImage{
-                            //Pet has no image
-                            NetworkAPI.loadPicture(imageFile: pet["image"] as! PFFile, successBlock: { (image:UIImage) in
-                                pet.image = image
-                                self.profileImageView.image = image
-                            })
-                            
-                        }
+//                        let petImage: PFFile? = pet["image"] as? PFFile
+//                        if let petImage = petImage{
+//                            //Pet has no image
+////                            NetworkAPI.loadPicture(imageFile: pet["image"] as! PFFile, successBlock: { (image:UIImage) in
+////                                pet.image = image
+////                                self.profileImageView.image = image
+////                            })
+//                            
+//                        }
                        
                         print("pet has no image")
                     }

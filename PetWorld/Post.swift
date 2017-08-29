@@ -30,6 +30,7 @@ class Post: NSObject {
     var image: UIImage?
     //Flag to check and see if a post is currently liked by the current Pet logged in
     var liked: Bool = false
+    var objectId: String?
     
    
     

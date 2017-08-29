@@ -7,6 +7,7 @@
 //
 
 import XCTest
+
 @testable import PetWorld
 
 class PetWorldTests: XCTestCase {
@@ -21,16 +22,19 @@ class PetWorldTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testUser(){
+        let user = User(username: "Eddstah", email: "eddstah@hotmail.com")
+      let data =  user.toJson(with: "mypassword")
+        
+        
+        //Data should not be nil
+        XCTAssert(data != nil)
+        
+        
+    
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+    func testPerformanceExample() {}
+    
     
 }

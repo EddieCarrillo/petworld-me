@@ -124,28 +124,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         
         
         
-        let post1 = Post()
-        post1.author = Pet.currentPet()
-        post1.caption = "F the police."
-     //   post1.likedBy = [fuzzyDog, dalmation]
-        post1.media = NetworkAPI.getPhotoFile(photo: UIImage(named: "brown_dog"))
-        post1.saveInBackground()
-        
-        let post2 = Post()
-        post2.author = Pet.currentPet()
-        post2.caption = "I am fuzzy."
-      //  post2.likedBy = [dalmation, brownDog]
-        post2.media = NetworkAPI.getPhotoFile(photo: UIImage(named: "fuzzy_dog"))
-      //  NetworkAPI.postUserImage(photo: , caption: <#T##String?#>, success: <#T##PFBooleanResultBlock?##PFBooleanResultBlock?##(Bool, Error?) -> Void#>)
-        post2.saveInBackground()
-        
-        
-        let post3 = Post()
-        post3.author = Pet.currentPet()
-        post3.caption = "I am a german spy."
-      //  post3.likedBy = [fuzzyDog, brownDog]
-        post3.media = NetworkAPI.getPhotoFile(photo: UIImage(named: "dalmation"))
-        post3.saveInBackground()
+//        let post1 = Post()
+//        post1.author = Pet.currentPet()
+//        post1.caption = "F the police."
+//     //   post1.likedBy = [fuzzyDog, dalmation]
+//        post1.media = NetworkAPI.getPhotoFile(photo: UIImage(named: "brown_dog"))
+//        post1.saveInBackground()
+//        
+//        let post2 = Post()
+//        post2.author = Pet.currentPet()
+//        post2.caption = "I am fuzzy."
+//      //  post2.likedBy = [dalmation, brownDog]
+//        post2.media = NetworkAPI.getPhotoFile(photo: UIImage(named: "fuzzy_dog"))
+//      //  NetworkAPI.postUserImage(photo: , caption: <#T##String?#>, success: <#T##PFBooleanResultBlock?##PFBooleanResultBlock?##(Bool, Error?) -> Void#>)
+//        post2.saveInBackground()
+//        
+//        
+//        let post3 = Post()
+//        post3.author = Pet.currentPet()
+//        post3.caption = "I am a german spy."
+//      //  post3.likedBy = [fuzzyDog, brownDog]
+//        post3.media = NetworkAPI.getPhotoFile(photo: UIImage(named: "dalmation"))
+//        post3.saveInBackground()
         
         
         

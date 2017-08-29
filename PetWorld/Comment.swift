@@ -21,6 +21,8 @@ class Comment: NSObject{
      var author: Pet?
     //The post that the comment belongs to.
      var post: Post?
+    
+    var objectId: String?
 
   
     

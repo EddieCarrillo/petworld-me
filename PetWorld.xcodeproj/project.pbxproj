@@ -34,7 +34,6 @@
 		1F73AAB71E9C937C00A5C1AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F73AAB61E9C937C00A5C1AD /* Assets.xcassets */; };
 		1F73AABA1E9C937C00A5C1AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F73AAB81E9C937C00A5C1AD /* LaunchScreen.storyboard */; };
 		1F73AAC51E9C937D00A5C1AD /* PetWorldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73AAC41E9C937D00A5C1AD /* PetWorldTests.swift */; };
-		1F73AAD01E9C937D00A5C1AD /* PetWorldUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73AACF1E9C937D00A5C1AD /* PetWorldUITests.swift */; };
 		1F73F9551F324FA5002AA24B /* SearchPetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73F9541F324FA5002AA24B /* SearchPetsViewController.swift */; };
 		1F73F9571F3251A2002AA24B /* PetDescriptionCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F73F9561F3251A2002AA24B /* PetDescriptionCellTableViewCell.swift */; };
 		1F73F9591F327985002AA24B /* SearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F73F9581F327985002AA24B /* SearchView.xib */; };
@@ -47,6 +46,7 @@
 		1F75B04C1F55C756006542CC /* CommentAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F75B04B1F55C756006542CC /* CommentAPI.swift */; };
 		1F75B04E1F55C771006542CC /* PostsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F75B04D1F55C771006542CC /* PostsAPI.swift */; };
 		1F75B0501F55C85C006542CC /* FileAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F75B04F1F55C85C006542CC /* FileAPI.swift */; };
+		1F75B0521F55E7F3006542CC /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F75B0511F55E7F3006542CC /* AuthAPI.swift */; };
 		1F7D42551ED93B9E00E4B278 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D42541ED93B9E00E4B278 /* GalleryViewController.swift */; };
 		1F7D42571ED93C3400E4B278 /* PhotoCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D42561ED93C3400E4B278 /* PhotoCaptureViewController.swift */; };
 		1F7D42591ED93CAD00E4B278 /* GalleryItemCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7D42581ED93CAD00E4B278 /* GalleryItemCellCollectionViewCell.swift */; };
@@ -131,8 +131,6 @@
 		1F73AAC41E9C937D00A5C1AD /* PetWorldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetWorldTests.swift; sourceTree = "<group>"; };
 		1F73AAC61E9C937D00A5C1AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F73AACB1E9C937D00A5C1AD /* PetWorldUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetWorldUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1F73AACF1E9C937D00A5C1AD /* PetWorldUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetWorldUITests.swift; sourceTree = "<group>"; };
-		1F73AAD11E9C937D00A5C1AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F73F9541F324FA5002AA24B /* SearchPetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPetsViewController.swift; sourceTree = "<group>"; };
 		1F73F9561F3251A2002AA24B /* PetDescriptionCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetDescriptionCellTableViewCell.swift; sourceTree = "<group>"; };
 		1F73F9581F327985002AA24B /* SearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchView.xib; sourceTree = "<group>"; };
@@ -145,6 +143,7 @@
 		1F75B04B1F55C756006542CC /* CommentAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentAPI.swift; sourceTree = "<group>"; };
 		1F75B04D1F55C771006542CC /* PostsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsAPI.swift; sourceTree = "<group>"; };
 		1F75B04F1F55C85C006542CC /* FileAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileAPI.swift; sourceTree = "<group>"; };
+		1F75B0511F55E7F3006542CC /* AuthAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		1F7D42541ED93B9E00E4B278 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		1F7D42561ED93C3400E4B278 /* PhotoCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureViewController.swift; sourceTree = "<group>"; };
 		1F7D42581ED93CAD00E4B278 /* GalleryItemCellCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryItemCellCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -260,6 +259,7 @@
 				1F75B04B1F55C756006542CC /* CommentAPI.swift */,
 				1F75B04D1F55C771006542CC /* PostsAPI.swift */,
 				1F75B04F1F55C85C006542CC /* FileAPI.swift */,
+				1F75B0511F55E7F3006542CC /* AuthAPI.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -284,7 +284,6 @@
 				1FAD6F3D1F057757006783F7 /* Fonts */,
 				1F73AAAE1E9C937C00A5C1AD /* PetWorld */,
 				1F73AAC31E9C937D00A5C1AD /* PetWorldTests */,
-				1F73AACE1E9C937D00A5C1AD /* PetWorldUITests */,
 				1F73AAAD1E9C937C00A5C1AD /* Products */,
 				05F41BC95F6B0D44AF04ADCC /* Pods */,
 				BEA0489666F0373EAB2C17FB /* Frameworks */,
@@ -328,15 +327,6 @@
 				1F73AAC61E9C937D00A5C1AD /* Info.plist */,
 			);
 			path = PetWorldTests;
-			sourceTree = "<group>";
-		};
-		1F73AACE1E9C937D00A5C1AD /* PetWorldUITests */ = {
-			isa = PBXGroup;
-			children = (
-				1F73AACF1E9C937D00A5C1AD /* PetWorldUITests.swift */,
-				1F73AAD11E9C937D00A5C1AD /* Info.plist */,
-			);
-			path = PetWorldUITests;
 			sourceTree = "<group>";
 		};
 		1F73AADD1E9C938C00A5C1AD /* View Controllers */ = {
@@ -672,6 +662,7 @@
 				33AB42701ECBB031007B7BB4 /* Post.swift in Sources */,
 				1FB386E51EA5CEEE00FBEB8E /* SignUpViewController.swift in Sources */,
 				1F7D42551ED93B9E00E4B278 /* GalleryViewController.swift in Sources */,
+				1F75B0521F55E7F3006542CC /* AuthAPI.swift in Sources */,
 				1FE5DDA91F16D985005F118D /* PetFieldsLoadedDelegate.swift in Sources */,
 				1F73AAB01E9C937C00A5C1AD /* AppDelegate.swift in Sources */,
 				5EC637411ED413B7003D67F3 /* PetsTableViewCell.swift in Sources */,
@@ -732,7 +723,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F73AAD01E9C937D00A5C1AD /* PetWorldUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

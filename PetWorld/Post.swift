@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class Post: PFObject, PFSubclassing {
+class Post: NSObject {
     /**
      The name of the class as seen in the REST API.
      */
@@ -19,14 +19,14 @@ class Post: PFObject, PFSubclassing {
 
     
   
-   @NSManaged var petName: String?
-   @NSManaged var author : Pet?
-   @NSManaged var media: PFFile?
-   @NSManaged var caption: String?
-    @NSManaged var likes: NSNumber?
-    @NSManaged var likedBy: [String: Pet]?
-   @NSManaged var comments: [Comment]?
-   @NSManaged var timeStamp : String?
+    var petName: String?
+    var author : Pet?
+    var media: PFFile?
+    var caption: String?
+     var likes: NSNumber?
+     var likedBy: [String: Pet]?
+    var comments: [Comment]?
+    var timeStamp : String?
     var image: UIImage?
     //Flag to check and see if a post is currently liked by the current Pet logged in
     var liked: Bool = false

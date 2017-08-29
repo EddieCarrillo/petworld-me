@@ -9,18 +9,18 @@
 import Foundation
 import Parse
 
-class Comment: PFObject, PFSubclassing{
+class Comment: NSObject{
     
     public static func parseClassName() -> String {
         return "Comment"
     }
     
     //That actual text of the comment.
-    @NSManaged var text: String?
+     var text: String?
     //Who wrote the post
-   @NSManaged  var author: Pet?
+     var author: Pet?
     //The post that the comment belongs to.
-    @NSManaged var post: Post?
+     var post: Post?
 
   
     

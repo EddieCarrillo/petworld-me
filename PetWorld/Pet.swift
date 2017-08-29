@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import Parse
 
-class Pet: PFObject, PFSubclassing {
+class Pet: NSObject  {
     
     static var pets: [Pet] = []
   
@@ -22,37 +21,37 @@ class Pet: PFObject, PFSubclassing {
     //Background profile picture
     var backgroundImage: UIImage?
     //Name of the pet.
-    @NSManaged var name: String?
+     var name: String?
     
-    @NSManaged var breed: String?
+     var breed: String?
     
-    @NSManaged var species: String?
+     var species: String?
     
-    @NSManaged var weight: NSNumber?
+     var weight: NSNumber?
     
-    @NSManaged var height: NSNumber?
+     var height: NSNumber?
     
-    @NSManaged var age: NSNumber?
+     var age: NSNumber?
     //Animals's favorite hobby
-    @NSManaged var hobby: String?
+     var hobby: String?
     //Animal's favorite toy
-    @NSManaged var toy: String?
+     var toy: String?
     //Male or female none of this 55 gender stuff.
-    @NSManaged var gender: String?
+     var gender: String?
     //Don't be a folllower be a leader.
-    @NSManaged var followersCount: NSNumber?
+     var followersCount: NSNumber?
     //Increase this.
-    @NSManaged var followingCount: NSNumber?
+     var followingCount: NSNumber?
     //Minions
-    @NSManaged var followers: [String: Pet]?
+     var followers: [String: Pet]?
     //Idols
-    @NSManaged var following: [String:Pet]?
+     var following: [String:Pet]?
     //Mini bio (32 characters max)
-    @NSManaged  var miniBio: String?
+      var miniBio: String?
     //Long bio (256 characters max)
-    @NSManaged  var longBio: String?
+      var longBio: String?
     //Pet's liked post
-    @NSManaged var likedPosts: [String: Post]?
+     var likedPosts: [String: Post]?
     
    
    

@@ -9,9 +9,9 @@
 import UIKit
 import Parse
 
-class User: PFUser {
+class User: NSObject {
     
-    @NSManaged var likedPosts: [Post]?
+     var likedPosts: [Post]?
     
     
    

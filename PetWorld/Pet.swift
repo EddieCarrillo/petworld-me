@@ -14,7 +14,7 @@ class Pet: NSObject  {
   
     static var currentPetIdx = 0
     
-    @NSManaged var owner: PFUser?
+     var owner: PFUser?
     
     //Profile pictre
     var image: UIImage?

@@ -10,7 +10,67 @@ import Foundation
 
 
 class PetsAPI{
-    let path = "/pets"
+    
+    static var path = "/pets"
+    static var getMethod = "GET"
+    static var postMethod = "POST"
+    
+    
+    
+   class func getPosts(onFinished: @escaping ([Pet]? ,Error?) -> Void){
+        let url = URL(string: "\(NetworkAPI.apiBaseUrl)\(path)")
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        var urlRequest = URLRequest(url: url!)
+        urlRequest.httpMethod = getMethod
+    
+    let task = session.dataTask(with: urlRequest) { (data: Data?, response: URLResponse?, error :Error?) in
+        if let error = error{
+             onFinished(nil, error)
+        }else if let response = response{
+            let response = response as! HTTPURLResponse
+            let statusCode = response.statusCode
+            if (statusCode != 200 && statusCode != 201){
+                 onFinished(nil, NSError(domain: "Bad request", code: statusCode, userInfo: nil))
+            }else if let data = data {
+                
+                var jsonBody: [[String: Any]]?
+                do{
+                    jsonBody = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]]
+                    
+                }catch{
+                    onFinished(nil, NSError(domain: "Trouble deserializing data", code: 404, userInfo: nil))
+                }
+                
+                if let jsonBody = jsonBody{
+                    var pets: [Pet] = []
+                    for object in jsonBody{
+                        var pet = Pet(jsonMap: object)
+                        pets.append(pet)
+                    }
+                    
+                    onFinished(pets, nil)
+                }else{
+                    onFinished(nil, NSError(domain: "Trouble deserializing data", code: 404, userInfo: nil) )
+                }
+            }
+        }
+    }
+    
+    task.resume()
+    
+ }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

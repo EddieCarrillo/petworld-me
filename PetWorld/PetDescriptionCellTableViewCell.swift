@@ -29,9 +29,8 @@ class PetDescriptionCellTableViewCell: UITableViewCell {
             }
             
             if let owner = pet.owner{
-                if let ownerName = owner.username{
-                    ownerLabel.text = ownerName
-                }
+                    ownerLabel.text = owner.username
+                
             }
         }
     }

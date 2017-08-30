@@ -95,7 +95,7 @@ class PetWorldTests: XCTestCase {
         let expecting = expectation(description: "Should return a list of pets after call")
         
        
-        PetsAPI.getPosts { (pets: [Pet]?, error: Error?) in
+        PetsAPI.getPets { (pets: [Pet]?, error: Error?) in
             
             if let error = error{
                 print(error)
@@ -112,6 +112,35 @@ class PetWorldTests: XCTestCase {
         }
         
         
+        waitForExpectations(timeout: 10) { (error: Error?) in
+            if let error = error{
+                XCTFail("Took to long errors fam \(error)")
+            }
+        }
+    }
+    
+    
+    
+    func testGetPetWithId(){
+        let lemonId = "59a4890ab3b81f130414779b"
+        let expecting = expectation(description: "Should return a pet object with a given id")
+        PetsAPI.getPet(with: lemonId) { (pet: Pet?, error: Error?) in
+            
+            if let error = error{
+                print(error)
+                XCTFail("Trouble getting posts")
+            }else if let pet = pet{
+                //Pets were returned (not a failure)
+                if let name = pet.name{
+                   print("name: \(name)")
+                }
+                
+            }else{
+                XCTFail("No pets returned")
+            }
+            
+            expecting.fulfill()
+        }
         waitForExpectations(timeout: 10) { (error: Error?) in
             if let error = error{
                 XCTFail("Took to long errors fam \(error)")

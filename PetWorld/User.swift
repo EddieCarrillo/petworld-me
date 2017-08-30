@@ -14,34 +14,33 @@ class User: NSObject {
     
    static  let auth_token_key = "auth_token"
     static var current: User?
-    var username: String?
-    var email: String?
+    var username: String
+    var email: String
+    //Not super secure TODO: Fix this security issue
+    var password: String
+    
     var objectId: String?
     
     
     
     
-    init(username: String, email: String){
+    
+    init(username: String, email: String, password: String){
         self.username = username
         self.email = email
+        self.password = password
     }
     
     
     
-    func toJson(with password: String) -> Data?{
+    func toJson() -> Data?{
         
        
-        var dictionary = ["username": self.username, "email": email, "password": password ]
-        
-        print("transfer to json: \(dictionary)")
-        
+        let dictionary = ["username": self.username, "email": self.email, "password": self.password ]
         
         do{
-            
-            
             let jsonString: Data =  try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions.prettyPrinted)
             
-            print(jsonString)
             return jsonString
         }catch{
         

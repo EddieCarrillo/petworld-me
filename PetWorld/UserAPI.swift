@@ -26,28 +26,23 @@ class UserAPI{
         let session = URLSession(configuration: config)
         var urlRequest = URLRequest(url: url!)
         var requestUserBody = user.toJson()
-        print("json string: \(requestUserBody)")
         
         urlRequest.httpMethod = postMethod
         urlRequest.addValue(applicationJson, forHTTPHeaderField: contentType)
         
         if let jsonBody = requestUserBody{
             urlRequest.httpBody = jsonBody
-            print(urlRequest)
         }
         
         
-        print("Task to be called!")
         
         let task = session.dataTask(with: urlRequest) { (data: Data?, response: URLResponse?, error :Error?) in
             
             if let error = error{
-                print("Error")
                 onFinished(nil, error)
             }else if let response = response{
                 let response = response as! HTTPURLResponse
                 
-                print("RESPONSE: \(response)")
                 let code = response.statusCode
                 if (code != 200 && code != 201){
                     let error = NSError(domain: "Bad request", code: code, userInfo: nil)

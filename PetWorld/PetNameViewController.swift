@@ -30,7 +30,7 @@ class PetNameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.pet = Pet()
+        //self.pet = Pet()
         
         
         //Use respsponder chain for target action

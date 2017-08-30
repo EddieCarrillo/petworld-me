@@ -11,13 +11,6 @@ import UIKit
 let path = "/files"
 
 
-
-
-
-
-
-
-
 /*This function creates a request body for
  mult-part form requests. (Primarily for image uploading)*/
 private func createDataBody(withParameters params: [String: String]?, image: UIImage, boundary: String) -> Data{

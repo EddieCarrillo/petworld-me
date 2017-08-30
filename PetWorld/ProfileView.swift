@@ -131,9 +131,8 @@ class ProfileView: UIView {
     
     func updateOwnerLabel(){
         let currentUser = User.current!
-        if let username = currentUser.username{
-            self.ownerLabel.text = username
-        }
+            self.ownerLabel.text = currentUser.username
+        
     }
 
     

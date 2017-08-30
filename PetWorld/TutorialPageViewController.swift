@@ -59,8 +59,8 @@ class TutorialPageViewController: UIPageViewController, UIPageViewControllerDele
         self.dataSource = self
         //Initialize the first pet
        
-        let pet = Pet()
-        self.pet = pet
+        //let pet = Pet()
+     //   self.pet = pet
        // pet.saveInBackground()
         
         

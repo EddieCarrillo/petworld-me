@@ -16,6 +16,8 @@ class Pet: NSObject  {
     
      var owner: User?
     
+    var ownerId: String?
+    
     //Profile pictre
     var image: UIImage?
     //Background profile picture
@@ -56,6 +58,11 @@ class Pet: NSObject  {
     
     var objectId: String?
     
+     init(jsonMap: [String: Any]){
+        self.ownerId = jsonMap["owner"] as! String?
+        self.objectId = jsonMap["_id"] as! String?
+        self.name = jsonMap["name"] as! String?
+    }
    
    
    

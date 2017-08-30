@@ -69,13 +69,10 @@ class PetWorldTests: XCTestCase {
         
         let user = User(username: "Eddstah", email: "eddstah@hotmail.com", password: "pass")
         
-        var triggered = false
         UserAPI.signUp(new: user) { (token: String?, error: Error?) in
             
             if let token = token{
-                print("TOKEN: \(token)")
             }else if let error = error{
-               print("ERROR: \(error)")
                 XCTFail()
             }else {
                 XCTFail()
@@ -87,19 +84,39 @@ class PetWorldTests: XCTestCase {
         
         waitForExpectations(timeout: 100) { (error: Error?) in
             if let error = error{
-                 XCTFail("Took to long errors fam")
+                 XCTFail("Took to long errors fam \(error)")
             }
+        }
+    
+    }
+    
+    
+    func testGetPets(){
+        let expecting = expectation(description: "Should return a list of pets after call")
+        
+       
+        PetsAPI.getPosts { (pets: [Pet]?, error: Error?) in
+            
+            if let error = error{
+                print(error)
+                XCTFail("Trouble getting posts")
+            }else if let pets = pets{
+                //Pets were returned (not a failure)
+                
+            }else{
+                XCTFail("No pets returned")
+            }
+            
+            expecting.fulfill()
+        
         }
         
         
-        
-        
-        
-        
-        
-        
-        
-        
+        waitForExpectations(timeout: 10) { (error: Error?) in
+            if let error = error{
+                XCTFail("Took to long errors fam \(error)")
+            }
+        }
     }
     
     func testPerformanceExample() {}

@@ -21,54 +21,33 @@ class UserAPI{
     
     
     class func signUp(new user: User, onFinished: @escaping (String?,Error? ) -> Void){
-        let url = URL(string: "\(NetworkAPI.apiBaseUrl)\(path)")
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-        var urlRequest = URLRequest(url: url!)
-        var requestUserBody = user.toJson()
-        
-        urlRequest.httpMethod = postMethod
-        urlRequest.addValue(applicationJson, forHTTPHeaderField: contentType)
-        
-        if let jsonBody = requestUserBody{
-            urlRequest.httpBody = jsonBody
+        let url =  "\(NetworkAPI.apiBaseUrl)\(path)"
+        guard var requestUserBody = user.toJson() else {
+            onFinished(nil, NSError(domain: "Could not deserialize json", code: 404, userInfo: nil))
+            return;
         }
-        
-        
-        
-        let task = session.dataTask(with: urlRequest) { (data: Data?, response: URLResponse?, error :Error?) in
-            
+        GeneralNetworkAPI.post(urlString: url, requestBody: requestUserBody, token: nil) { (data: Data?, error: Error?) in
             if let error = error{
-                onFinished(nil, error)
-            }else if let response = response{
-                let response = response as! HTTPURLResponse
-                
-                let code = response.statusCode
-                if (code != 200 && code != 201){
-                    let error = NSError(domain: "Bad request", code: code, userInfo: nil)
-                    onFinished(nil, error)
-                }else if let data = data{
-                    var jsonBody: [String: Any]?
-                    do{
-                        
-                        jsonBody = try JSONSerialization.jsonObject(with: data) as? [String: Any]
-                    }catch{
-                        onFinished(nil, NSError(domain: "Could not deserialize json", code: 404, userInfo: nil))
-                        
-                    }
+                 onFinished(nil, error)
+            }else if let data = data {
+                var jsonBody: [String: Any]?
+                do{
                     
-                    if let jsonBody = jsonBody{
-                        var token = jsonBody["token"] as? String
-                        onFinished(token, nil)
-                    }else {
-                        onFinished(nil, NSError(domain: "Could not deserialize json", code: 404, userInfo: nil) )
-                    }
- 
+                    jsonBody = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+                }catch{
+                    onFinished(nil, NSError(domain: "Could not deserialize json", code: 404, userInfo: nil))
+                    
                 }
+                
+                if let jsonBody = jsonBody{
+                    var token = jsonBody["token"] as? String
+                    onFinished(token, nil)
+                }else {
+                    onFinished(nil, NSError(domain: "Could not deserialize json", code: 404, userInfo: nil) )
+                }
+            }
         }
-    }
         
-        task.resume()
         
         
         

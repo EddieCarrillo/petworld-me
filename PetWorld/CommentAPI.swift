@@ -9,6 +9,21 @@
 import UIKit
 
 class CommentAPI{
-    let path = "/comments"
+    static var path = "/comments"
+    static var getMethod = "GET"
+    static var postMethod = "POST"
+    
+    
+    class func getComments(from postId: String, onFinished: ([Comment]?, Error?) -> Void){
+        
+    
+    }
+    
+    class func postCreate(comment: Comment, from postId: String, onFinished: (Comment?, Error?) -> Void){
+    
+    }
+    
+    
+    
 
 }

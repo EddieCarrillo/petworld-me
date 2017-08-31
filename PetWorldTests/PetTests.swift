@@ -177,4 +177,40 @@ class PetTests: XCTestCase {
         
     }
     
+    
+    
+    func testPostCreatePets(){
+        let expecting = expectation(description: "Should returned newly created pet resource.")
+        
+        //Change pet name from Lemon -> SimonLimon on the server
+        let chicken = Pet(name: "chicken", ownerId: "59a48909b3b81f1304147798") //JonRogawski
+      
+        
+        
+        
+        if let token = authToken{
+            print("token: \(token)")
+            PetsAPI.postCreate(newPet: chicken, token: token) { (pet: Pet?, error: Error?) in
+                if let error = error{
+                    XCTFail("\(error.localizedDescription)")
+                }else if let pet = pet{
+                    expecting.fulfill()
+                }else{
+                    XCTFail("Some failure")
+                }
+            }
+        
+        
+        waitForExpectations(timeout: 10) { (error: Error?) in
+            if let error = error{
+                XCTFail("Took to long errors fam \(error)")
+            }
+        }
+        
+    
+    
+    }
+    
+}
+
 }

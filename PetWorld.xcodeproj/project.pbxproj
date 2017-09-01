@@ -349,6 +349,7 @@
 				1F87B7CA1F5766F900D09005 /* AuthTests.swift */,
 				1F87B7CC1F586E4800D09005 /* FileTests.swift */,
 				1F87B7CE1F588E2200D09005 /* CommentTests.swift */,
+				1F87B7D61F59D22100D09005 /* PostTests.swift */,
 			);
 			path = PetWorldTests;
 			sourceTree = "<group>";

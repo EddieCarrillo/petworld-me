@@ -8,7 +8,6 @@
 
 import UIKit
 import Foundation
-import Parse
 
 class User: NSObject {
     

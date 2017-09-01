@@ -117,17 +117,17 @@ class PostTableViewCell: UITableViewCell{
     }
 
     func updateMedia(){
-        if let image = post.image{
-            self.photoImage.image = image
-        }else{
-            if let media = post.media{
-                NetworkAPI.loadPicture(imageFile: media, successBlock: { (image: UIImage) in
-                    self.post.image = image
-                    self.photoImage.image = image
-                })
-            }
-           
-        }
+//        if let image = post.image{
+//            self.photoImage.image = image
+//        }else{
+//            if let media = post.media{
+//                NetworkAPI.loadPicture(imageFile: media, successBlock: { (image: UIImage) in
+//                    self.post.image = image
+//                    self.photoImage.image = image
+//                })
+//            }
+//           
+//        }
     }
     
     
@@ -233,31 +233,31 @@ class PostTableViewCell: UITableViewCell{
         
         self.loadingState = liked
         self.isLoading = true
-        if let pet = Pet.currentPet(){
-            NetworkAPI.toggleLiked(withPost: self.post, byPet: Pet.currentPet()!, withState: liked, completionHandler: { (success: Bool, error: Error?) in
-                
-                
-                
-                if let error = error{
-                    print("Could not toggle like! \(error)")
-                }else{
-                    if success{
-                        let newState:  Bool = self.likeButton.isSelected
-                        if (newState != liked){
-                            self.updateLike(liked: newState)
-                            //More loading is required....
-                        }else{//Finished loading
-                            self.isLoading = false
-                        }
-                        
-                        print("successfully toggled like")
-                        
-                    }else{
-                        print("successfully toggled like")
-                    }
-                }
-            })
-        }
+//        if let pet = Pet.currentPet(){
+//            NetworkAPI.toggleLiked(withPost: self.post, byPet: Pet.currentPet()!, withState: liked, completionHandler: { (success: Bool, error: Error?) in
+//                
+//                
+//                
+//                if let error = error{
+//                    print("Could not toggle like! \(error)")
+//                }else{
+//                    if success{
+//                        let newState:  Bool = self.likeButton.isSelected
+//                        if (newState != liked){
+//                            self.updateLike(liked: newState)
+//                            //More loading is required....
+//                        }else{//Finished loading
+//                            self.isLoading = false
+//                        }
+//                        
+//                        print("successfully toggled like")
+//                        
+//                    }else{
+//                        print("successfully toggled like")
+//                    }
+//                }
+//            })
+//        }
        
         
     }

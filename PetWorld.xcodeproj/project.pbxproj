@@ -60,6 +60,8 @@
 		1F87B7CF1F588E2200D09005 /* CommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F87B7CE1F588E2200D09005 /* CommentTests.swift */; };
 		1F87B7D11F58982B00D09005 /* MediaFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F87B7D01F58982B00D09005 /* MediaFile.swift */; };
 		1F87B7D31F589CCE00D09005 /* GeneralNetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F87B7D21F589CCE00D09005 /* GeneralNetworkAPI.swift */; };
+		1F87B7E31F59EEA800D09005 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F87B7E11F59EEA800D09005 /* Info.plist */; };
+		1F87B7E41F59EEA800D09005 /* PostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F87B7E21F59EEA800D09005 /* PostTests.swift */; };
 		1F9CF7081F08233D00F0F072 /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9CF7071F08233D00F0F072 /* DesignableButton.swift */; };
 		1F9CF70A1F09E19900F0F072 /* TextManipulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9CF7091F09E19800F0F072 /* TextManipulation.swift */; };
 		1F9CF70C1F0A952D00F0F072 /* DesignableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9CF70B1F0A952C00F0F072 /* DesignableTableView.swift */; };
@@ -136,7 +138,6 @@
 		1F73AABB1E9C937C00A5C1AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F73AAC01E9C937D00A5C1AD /* PetWorldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetWorldTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F73AAC41E9C937D00A5C1AD /* PetWorldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetWorldTests.swift; sourceTree = "<group>"; };
-		1F73AAC61E9C937D00A5C1AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F73AACB1E9C937D00A5C1AD /* PetWorldUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetWorldUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F73F9541F324FA5002AA24B /* SearchPetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPetsViewController.swift; sourceTree = "<group>"; };
 		1F73F9561F3251A2002AA24B /* PetDescriptionCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetDescriptionCellTableViewCell.swift; sourceTree = "<group>"; };
@@ -164,6 +165,8 @@
 		1F87B7CE1F588E2200D09005 /* CommentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTests.swift; sourceTree = "<group>"; };
 		1F87B7D01F58982B00D09005 /* MediaFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaFile.swift; sourceTree = "<group>"; };
 		1F87B7D21F589CCE00D09005 /* GeneralNetworkAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralNetworkAPI.swift; sourceTree = "<group>"; };
+		1F87B7E11F59EEA800D09005 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F87B7E21F59EEA800D09005 /* PostTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTests.swift; sourceTree = "<group>"; };
 		1F9CF7071F08233D00F0F072 /* DesignableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
 		1F9CF7091F09E19800F0F072 /* TextManipulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextManipulation.swift; sourceTree = "<group>"; };
 		1F9CF70B1F0A952C00F0F072 /* DesignableTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableTableView.swift; sourceTree = "<group>"; };
@@ -338,11 +341,12 @@
 		1F73AAC31E9C937D00A5C1AD /* PetWorldTests */ = {
 			isa = PBXGroup;
 			children = (
+				1F87B7E11F59EEA800D09005 /* Info.plist */,
+				1F87B7E21F59EEA800D09005 /* PostTests.swift */,
 				1F73AAC41E9C937D00A5C1AD /* PetWorldTests.swift */,
 				1F75B0551F57446B006542CC /* PetTests.swift */,
 				1F75B0531F574324006542CC /* UserTests.swift */,
 				1F87B7CA1F5766F900D09005 /* AuthTests.swift */,
-				1F73AAC61E9C937D00A5C1AD /* Info.plist */,
 				1F87B7CC1F586E4800D09005 /* FileTests.swift */,
 				1F87B7CE1F588E2200D09005 /* CommentTests.swift */,
 			);
@@ -606,6 +610,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F87B7E31F59EEA800D09005 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -741,6 +746,7 @@
 				1F75B0541F574325006542CC /* UserTests.swift in Sources */,
 				1F87B7CF1F588E2200D09005 /* CommentTests.swift in Sources */,
 				1F87B7CD1F586E4900D09005 /* FileTests.swift in Sources */,
+				1F87B7E41F59EEA800D09005 /* PostTests.swift in Sources */,
 				1F73AAC51E9C937D00A5C1AD /* PetWorldTests.swift in Sources */,
 				1F75B0561F57446B006542CC /* PetTests.swift in Sources */,
 				1F87B7CB1F5766F900D09005 /* AuthTests.swift in Sources */,
@@ -917,7 +923,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = PetWorldTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gangsterswagmuffins.PetWorldTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -931,7 +936,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = PetWorldTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gangsterswagmuffins.PetWorldTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

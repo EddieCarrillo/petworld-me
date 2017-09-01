@@ -80,19 +80,19 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.tableView.reloadData()
 
 
-            //When the post is finished updating then udpdate the comment to avoid hanging/ deadlock.
-            NetworkAPI.update(post: post, withResult: { (success: Bool, error: Error?) in
-                
-                self.updateComment(comment: newComment)
-                
-                if (success){
-                    print("updated post with new comments")
-                }else{
-                    print(error)
-                    
-                }
-            
-            })
+//            //When the post is finished updating then udpdate the comment to avoid hanging/ deadlock.
+//            NetworkAPI.update(post: post, withResult: { (success: Bool, error: Error?) in
+//                
+//                self.updateComment(comment: newComment)
+//                
+//                if (success){
+//                    print("updated post with new comments")
+//                }else{
+//                    print(error)
+//                    
+//                }
+//            
+//            })
             
         }
         self.commentTextField.text = ""
@@ -178,18 +178,18 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
       
     func updateComment(comment: Comment){
         
-        NetworkAPI.postComment(comment: comment) { (success: Bool, error: Error?) in
-            if let error = error{
-                print("Could not save comment...\n\n\(error)")
-                //Do some kind of error handling...
-            }else{
-                if (success){
-                    print("saved comment!")
-                    
-                    
-                }
-            }
-        }
+//        NetworkAPI.postComment(comment: comment) { (success: Bool, error: Error?) in
+//            if let error = error{
+//                print("Could not save comment...\n\n\(error)")
+//                //Do some kind of error handling...
+//            }else{
+//                if (success){
+//                    print("saved comment!")
+//                    
+//                    
+//                }
+//            }
+//        }
     }
 }
 

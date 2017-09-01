@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 class EditProfileViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     

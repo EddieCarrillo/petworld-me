@@ -7,13 +7,10 @@
 //
 
 import Foundation
-import Parse
 
 class Comment: NSObject{
     
-    public static func parseClassName() -> String {
-        return "Comment"
-    }
+    
     
     //That actual text of the comment.
      var text: String!

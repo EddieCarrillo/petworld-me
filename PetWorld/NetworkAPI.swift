@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 
 class NetworkAPI: NSObject {
@@ -17,36 +16,36 @@ class NetworkAPI: NSObject {
     
     
     
-    class func loadPicture(imageFile: PFFile, successBlock: ((UIImage)->Void)? ) ->UIImage?{
-        var picture: UIImage?
-        imageFile.getDataInBackground({ (imageData:Data?, error: Error?) in
-            if let error = error{
-                print("error: \(error)")
-            }else{
-                
-                let queue = OperationQueue()
-               
-                if let imageData = imageData{
-                    queue.addOperation {
-                        picture = UIImage(data: imageData)
-                        OperationQueue.main.addOperation {
-                           successBlock!(picture!)
-                        }
-                        
-                    }
-                    
-                }
-            }
-            
-        }) { (int: Int32) in
-            print("totalProgress: \(int)%")
-        }
-        
-        
-        return picture
-        
-        
-    }
+//    class func loadPicture(imageFile: PFFile, successBlock: ((UIImage)->Void)? ) ->UIImage?{
+//        var picture: UIImage?
+//        imageFile.getDataInBackground({ (imageData:Data?, error: Error?) in
+//            if let error = error{
+//                print("error: \(error)")
+//            }else{
+//                
+//                let queue = OperationQueue()
+//               
+//                if let imageData = imageData{
+//                    queue.addOperation {
+//                        picture = UIImage(data: imageData)
+//                        OperationQueue.main.addOperation {
+//                           successBlock!(picture!)
+//                        }
+//                        
+//                    }
+//                    
+//                }
+//            }
+//            
+//        }) { (int: Int32) in
+//            print("totalProgress: \(int)%")
+//        }
+//        
+//        
+//        return picture
+//        
+//        
+//    }
     
     
 
@@ -58,53 +57,53 @@ class NetworkAPI: NSObject {
     
     
     
-    class func getPhotoFile(photo: UIImage?) -> PFFile? {
-        return nil
-    }
+//    class func getPhotoFile(photo: UIImage?) -> PFFile? {
+//        return nil
+//    }
     
     
-    class func postUserImage(photo: UIImage, caption: String?, success: PFBooleanResultBlock?) {
-       
-        
-    }
+//    class func postUserImage(photo: UIImage, caption: String?, success: PFBooleanResultBlock?) {
+//       
+//        
+//    }
     
-    
-    class func getHomeFeed(numPosts: Int, forPet: Pet,  successHandler: @escaping ([Post])->(),  errorHandler: ((Error)->())?){
-        // Query
-        let query = PFQuery(className: "Post")
-     print(forPet)
-        let following = Array(forPet.following!.values)
-        let array = Array(forPet.following!.values)
-        
-        print(array)
-        query.whereKey("author", containedIn: following)
-        query.includeKey("author")
-        query.order(byDescending: "_created_at")
-        //Populate the pet data field.
-        
-    
-        
-        query.limit = numPosts
-        
-        
-        query.findObjectsInBackground { (postObjects: [PFObject]?, error: Error?) in
-           
-    }
-        
-    }
+//    
+//    class func getHomeFeed(numPosts: Int, forPet: Pet,  successHandler: @escaping ([Post])->(),  errorHandler: ((Error)->())?){
+//        // Query
+//        let query = PFQuery(className: "Post")
+//     print(forPet)
+//        let following = Array(forPet.following!.values)
+//        let array = Array(forPet.following!.values)
+//        
+//        print(array)
+//        query.whereKey("author", containedIn: following)
+//        query.includeKey("author")
+//        query.order(byDescending: "_created_at")
+//        //Populate the pet data field.
+//        
+//    
+//        
+//        query.limit = numPosts
+//        
+//        
+//        query.findObjectsInBackground { (postObjects: [PFObject]?, error: Error?) in
+//           
+//    }
+//    
+//    }
     
         
     class func loadCurrentUser(){}
     
    
     
-    class func loadOwner(userObject: PFObject, completionHandler: @escaping ()->(), errorHandler: (()->())?){
-    }
-    
-    class func loadPet(petObject: PFObject, completionHandler:  (()->())?, errorHandler: (()->())?){
-       
-    }
-    
+//    class func loadOwner(userObject: PFObject, completionHandler: @escaping ()->(), errorHandler: (()->())?){
+//    }
+//    
+//    class func loadPet(petObject: PFObject, completionHandler:  (()->())?, errorHandler: (()->())?){
+//       
+//    }
+//    
     
     
     
@@ -129,22 +128,22 @@ class NetworkAPI: NSObject {
        
         }
     
+//    
+//    class func postComment(comment: Comment, successBlock: PFBooleanResultBlock?){
+//        
+//        
+//    }
+//    
     
-    class func postComment(comment: Comment, successBlock: PFBooleanResultBlock?){
-        
-        
-    }
+//    class func update(post: Post, withResult: @escaping PFBooleanResultBlock){
+//      
+//    }
     
-    
-    class func update(post: Post, withResult: @escaping PFBooleanResultBlock){
-      
-    }
-    
-    class func toggleLiked(withPost: Post, byPet: Pet, withState liked: Bool, completionHandler: @escaping PFBooleanResultBlock){
-        
-        
-    }
-    
+//    class func toggleLiked(withPost: Post, byPet: Pet, withState liked: Bool, completionHandler: @escaping PFBooleanResultBlock){
+//        
+//        
+//    }
+//    
     
     
     class func follow(follower: Pet, followee: Pet, completionHandler: @escaping((Void) -> Void), errorHandler: @escaping((Error)-> Void)){
@@ -156,16 +155,16 @@ class NetworkAPI: NSObject {
         
     }
     
-    class func createNewPet(withName: String, with profilePic: UIImage, completionHandler: @escaping PFBooleanResultBlock){
-        
-    
-    }
-    
-    
-    class func createNewPet(withPet: Pet, completionHandler: @escaping PFBooleanResultBlock){
-        
-        
-    }
+//    class func createNewPet(withName: String, with profilePic: UIImage, completionHandler: @escaping PFBooleanResultBlock){
+//        
+//    
+//    }
+//    
+//    
+//    class func createNewPet(withPet: Pet, completionHandler: @escaping PFBooleanResultBlock){
+//        
+//        
+//    }
 
     
     

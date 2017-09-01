@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import Parse
 
 class MyFriendsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
-    var feed: [PFObject] = []
+    //var feed: [PFObject] = []
+    var feed: [Any] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,24 +23,24 @@ class MyFriendsViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("My Friends VC will appear")
-        // Query
-        let query = PFQuery(className: "Friend")
-        query.order(byDescending: "_created_at")
-        query.includeKey("name")
-        query.limit = 20
-        
-        query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) -> Void in
-            if let posts = posts {
-                self.feed = posts
-                self.tableView.reloadData()
-                
-            }
-            else {
-                print(error?.localizedDescription ?? "")
-            }
-        }
-        self.tableView.reloadData()
+//        print("My Friends VC will appear")
+//        // Query
+//        let query = PFQuery(className: "Friend")
+//        query.order(byDescending: "_created_at")
+//        query.includeKey("name")
+//        query.limit = 20
+//        
+//        query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) -> Void in
+//            if let posts = posts {
+//                self.feed = posts
+//                self.tableView.reloadData()
+//                
+//            }
+//            else {
+//                print(error?.localizedDescription ?? "")
+//            }
+//        }
+//        self.tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -63,9 +63,9 @@ class MyFriendsViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendTableViewCell", for: indexPath) as! FriendTableViewCell
         
-        let post = feed[indexPath.row]
-        cell.nameLabel.text = post["name"] as! String?
-        cell.numberLabel.text = post["number"] as! String?
+//        let post = feed[indexPath.row]
+//        cell.nameLabel.text = post["name"] as! String?
+//        cell.numberLabel.text = post["number"] as! String?
 
         
         return cell

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 class PetPhotoUploadViewController: UIViewController {
 
@@ -74,10 +73,10 @@ class PetPhotoUploadViewController: UIViewController {
     
     //This function extracts the photo from the UIImageView and stores in the pet object
     func extractPhoto(){
-        let currentUser = PFUser.current() as! User
-        self.pet?.image = profileImagePreview.image
-        
-        print("extractPhoto() called")
+//        let currentUser = PFUser.current() as! User
+//        self.pet?.image = profileImagePreview.image
+//        
+//        print("extractPhoto() called")
     }
     
    

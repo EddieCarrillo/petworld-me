@@ -6,7 +6,7 @@ target 'PetWorld' do
   use_frameworks!
 
   # Pods for PetApp
-  pod 'Parse'
+  
   pod 'MBProgressHUD'
 
 end

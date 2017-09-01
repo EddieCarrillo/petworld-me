@@ -7,7 +7,6 @@
 // 
 
 import UIKit
-import Parse
 import MBProgressHUD
 import AVFoundation
 
@@ -201,37 +200,37 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             //Start loading
             MBProgressHUD.showAdded(to: self.view, animated: true)
             
-            NetworkAPI.getHomeFeed(numPosts: 20, forPet: pet,   successHandler: { (posts: [Post]) in
-                //Finished loading pets
-                self.isLoadingPosts = false
-                MBProgressHUD.hide(for: self.view, animated: true)
-                //Update the GUI
-                self.posts = posts
-                print("_____\n\n\nfinished loading!!!\n\n\n________")
-                for post in posts{
-                self.checkIfPostIsLiked(post: post)
-                }
-                
-                if posts.count <= 0 {
-                self.tableView.isHidden = true
-                    self.emptyView.isHidden = false
-                }else{
-                self.tableView.isHidden = false
-                    self.emptyView.isHidden = true
-                }
-                
-                self.tableView.reloadData()
-                
-                if (!self.isLoadingComments){
-                for post in posts{
-                self.loadComments(forPost: post)
-                }
-                }
-                
-            }) { (error: Error) in
-                MBProgressHUD.hide(for: self.view, animated: true)
-                print(error)
-            }
+//            NetworkAPI.getHomeFeed(numPosts: 20, forPet: pet,   successHandler: { (posts: [Post]) in
+//                //Finished loading pets
+//                self.isLoadingPosts = false
+//                MBProgressHUD.hide(for: self.view, animated: true)
+//                //Update the GUI
+//                self.posts = posts
+//                print("_____\n\n\nfinished loading!!!\n\n\n________")
+//                for post in posts{
+//                self.checkIfPostIsLiked(post: post)
+//                }
+//                
+//                if posts.count <= 0 {
+//                self.tableView.isHidden = true
+//                    self.emptyView.isHidden = false
+//                }else{
+//                self.tableView.isHidden = false
+//                    self.emptyView.isHidden = true
+//                }
+//                
+//                self.tableView.reloadData()
+//                
+//                if (!self.isLoadingComments){
+//                for post in posts{
+//                self.loadComments(forPost: post)
+//                }
+//                }
+//                
+//            }) { (error: Error) in
+//                MBProgressHUD.hide(for: self.view, animated: true)
+//                print(error)
+//            }
         
         }
         

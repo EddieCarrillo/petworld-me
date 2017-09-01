@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 class SettingsViewController: UIViewController {
 
@@ -41,17 +40,17 @@ class SettingsViewController: UIViewController {
     
     @IBAction func onLogout(_ sender: UIButton) {
         print("logout button pressed!")
-        PFUser.logOutInBackground { (error: Error?) in
-            if (error != nil){
-                print(error!)
-                return
-            }
-            self.performSegue(withIdentifier: "LogoutSegue", sender: nil)
-            print("Successfully logged out!!!")
-           
-            
-            
-        }
+////        PFUser.logOutInBackground { (error: Error?) in
+////            if (error != nil){
+////                print(error!)
+////                return
+////            }
+//            self.performSegue(withIdentifier: "LogoutSegue", sender: nil)
+//            print("Successfully logged out!!!")
+//           
+//            
+//            
+//        }
         
       
         

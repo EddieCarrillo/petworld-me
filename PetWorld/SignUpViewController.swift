@@ -8,7 +8,6 @@
 
 import UIKit
 import AVFoundation
-import Parse
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
 

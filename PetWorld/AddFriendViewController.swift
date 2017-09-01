@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 class AddFriendViewController: UIViewController, UITextFieldDelegate {
 
@@ -28,15 +27,15 @@ class AddFriendViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func onSave(_ sender: Any) {
-        let post = PFObject(className: "Friend")
-        post["name"] = nameTextField.text
-        post["number"] = numberTextField.text
-        
-        // Save object (following function will save the object in Parse asynchronously)
-        post.saveInBackground { (True, error) in
-            
-        }
-        
+//        let post = PFObject(className: "Friend")
+//        post["name"] = nameTextField.text
+//        post["number"] = numberTextField.text
+//        
+//        // Save object (following function will save the object in Parse asynchronously)
+//        post.saveInBackground { (True, error) in
+//            
+//        }
+//        
         self.performSegue(withIdentifier: "showFriends", sender: self)
     }
     

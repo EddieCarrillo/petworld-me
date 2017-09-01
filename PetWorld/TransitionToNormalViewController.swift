@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 class TransitionToNormalViewController: UIViewController {
     
@@ -56,18 +55,18 @@ class TransitionToNormalViewController: UIViewController {
         let currentUser = User.current!
       
         
-        NetworkAPI.createNewPet(withPet: pet!) { (success: Bool, error: Error?) in
-            if (success){
-               print("Create a new pet succesfully")
-            }else{
-                if let error = error{
-                   print("Something went wrong...\n\n \(error))")
-                }
-            }
-            
-            self.performSegue(withIdentifier: "HomeSegue", sender: nil)
-            
-        }
+//        NetworkAPI.createNewPet(withPet: pet!) { (success: Bool, error: Error?) in
+//            if (success){
+//               print("Create a new pet succesfully")
+//            }else{
+//                if let error = error{
+//                   print("Something went wrong...\n\n \(error))")
+//                }
+//            }
+//            
+//            self.performSegue(withIdentifier: "HomeSegue", sender: nil)
+//            
+//        }
         
         
         

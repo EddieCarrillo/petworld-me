@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 class ProfilePictureEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 

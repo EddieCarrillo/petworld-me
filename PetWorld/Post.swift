@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Parse
 
 
 
@@ -21,7 +20,7 @@ class Post: NSObject {
     var authorId: String!
     var mediaFile: MediaFile?
     var mediaId: String!
-    var media: PFFile?
+//    var media: PFFile?
     var caption: String!
      var likes: NSNumber?
      var likedBy: [String: Pet]?

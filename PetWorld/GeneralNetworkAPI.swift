@@ -17,6 +17,12 @@ class GeneralNetworkAPI{
     static let bearer = "Bearer "
     
    class func get(urlString: String, token: String?, onFinished: @escaping (Data?, Error?) -> Void){
+//    
+//    var queryParams: [String: String]?
+//    if let queryParams = queryParams{
+//        let queryString = createQueryString(queryParams: queryParams)
+//        urlString = "\(urlString)\(queryString) "
+//    }
         guard let url = URL(string: urlString) else {
             onFinished(nil, NSError(domain: "Bad URL", code: 404, userInfo: nil))
             return;
@@ -24,7 +30,8 @@ class GeneralNetworkAPI{
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         var request = URLRequest(url: url)
-        
+    
+    
         request.httpMethod = "GET"
         //If we are trying to access protected resource
         
@@ -63,7 +70,7 @@ class GeneralNetworkAPI{
     
     
     
-    class func putOrPost(httpMethod: String, urlString: String, requestBody: Data, token: String?,  onFinished: @escaping (Data?, Error?) -> Void){
+   private class func putOrPost(httpMethod: String, urlString: String, requestBody: Data, token: String?,  onFinished: @escaping (Data?, Error?) -> Void){
         guard let url = URL(string: urlString) else {
             onFinished(nil, NSError(domain: "Bad URL", code: 404, userInfo: nil))
             return;
@@ -107,6 +114,27 @@ class GeneralNetworkAPI{
         
     
     }
+    
+    
+     class func createQueryString(queryParams: [String: String]) -> String{
+        //Start of query
+       var queryString = "?"
+        for (key, value) in queryParams{
+            //?key1=value&key2=value2&key3=value3
+            queryString = "\(queryString)\(key)=\(value)&"
+            print("queryString: \(queryString)")
+        }
+        print("size: \(queryString.characters.count)")
+        print("endIndex \(queryString)" )
+        //Remove the ampersand at the end
+        queryString = queryString.substring(to: queryString.index(before: queryString.endIndex))
+        
+        return queryString
+    }
+    
+    
 
 
 }
+
+

@@ -22,6 +22,16 @@ class PetWorldTests: XCTestCase {
         super.tearDown()
     }
     
+    //Because
+    func testToQueryString(){
+        let queryParams: [String: String] = ["pet": "lammy", "owner": "Eddie", "size": "large"]
+        let queryString =  GeneralNetworkAPI.createQueryString(queryParams: queryParams)
+        print("\(queryString)")
+        
+        XCTAssert(queryString == "?owner=Eddie&size=large&pet=lammy")
+    
+    }
+    
     
     
 }

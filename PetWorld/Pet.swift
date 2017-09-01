@@ -46,22 +46,41 @@ class Pet: NSObject  {
      var followingCount: NSNumber?
     //Minions
      var followers: [String: Pet]?
+      //Id of followers
+    var followersId: [String: String]?
     //Idols
      var following: [String:Pet]?
+    //Id of idols
+    var followingId: [String: String]?
     //Mini bio (32 characters max)
       var miniBio: String?
     //Long bio (256 characters max)
       var longBio: String?
     //Pet's liked post
      var likedPosts: [String: Post]?
+    //Ids of liked posts
+    var likedPostsId: [String: String]?
     
     
     var objectId: String?
     
      init(jsonMap: [String: Any]){
+        print("json to be deconstructed: \(jsonMap)")
         self.ownerId = jsonMap["owner"] as! String?
         self.objectId = jsonMap["_id"] as! String?
         self.name = jsonMap["name"] as! String?
+    }
+    
+    init(name: String, ownerId: String){
+         self.name = name
+         self.ownerId = ownerId
+        self.likedPostsId = [:]
+        self.likedPosts = [:]
+        self.followingId = [:]
+        self.following = [:]
+        self.followers = [:]
+        self.followersId = [:]
+        
     }
    
    
@@ -117,9 +136,99 @@ class Pet: NSObject  {
         return Pet.pets
     }
     
-    static func parseClassName() -> String {
-        return "Pet"
+     func toJson() -> Data?{
+        var dictionary: [String: Any] = [:]
+        
+        if let name = self.name{
+            dictionary["name"] = name
+        }
+        
+        if let ownerId = self.ownerId{
+           dictionary["owner"] = ownerId
+        }
+        
+        if let breed = self.breed{
+            dictionary["breed"] = breed
+        }
+        
+        if let species = self.species{
+            dictionary["species"] = species
+        }
+        
+        if let weight = self.weight{
+            dictionary["weight"] = weight
+        }
+        
+        if let height = self.height{
+            dictionary["height"] = height
+        }
+        
+        if let age = self.age{
+            dictionary["age"] = age
+        }
+        
+        if let hobby = self.hobby{
+            dictionary["hobby"] = hobby
+        }
+        
+        if let toy = self.toy{
+            dictionary["toy"] = toy
+        }
+        
+        if let gender = self.gender{
+            dictionary["geneder"] = gender
+        }
+        
+        if let followersCount = self.followersCount{
+            dictionary["followersCount"] = followersCount
+        }
+        
+        if let followingCount = self.followingCount{
+            dictionary["followingCount"] = followingCount
+        }
+        
+        if let followers = self.followersId{
+            dictionary["followers"] = followingCount
+        }
+        
+        if let following = self.followingId{
+            dictionary["following"] = following
+        }
+        
+        if let miniBio = self.miniBio{
+            dictionary["miniBio"] = miniBio
+        }
+        
+        if let longBio = self.longBio{
+            dictionary["longBio"] = longBio
+        }
+        
+        if let likedPostsId = self.likedPostsId{
+            dictionary["likedPosts"] = likedPostsId
+        }
+        
+        var jsonBody: Data?
+        
+        do{
+             jsonBody = try JSONSerialization.data(withJSONObject: dictionary, options: [])
+           
+        }catch{
+            
+        }
+        
+        
+        return jsonBody
+        
+        
+        
+        
     }
+    
+    
+    
+    
+    
+   
     
     func isFollowing(pet: Pet) -> Bool{
         if self.following == nil{
@@ -132,5 +241,8 @@ class Pet: NSObject  {
         
         return self.following![pet.objectId!] != nil
     }
+    
+    
+    
     
 }

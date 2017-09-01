@@ -36,22 +36,18 @@ class User: NSObject {
     func toJson() -> Data?{
         
        
-        let dictionary = ["username": self.username, "email": self.email, "password": self.password ]
+        let dictionary =  ["username": self.username, "email": self.email, "password": self.password ]
+        
         
         do{
             let jsonString: Data =  try JSONSerialization.data(withJSONObject: dictionary, options: JSONSerialization.WritingOptions.prettyPrinted)
-            
             return jsonString
         }catch{
         
             print("JSON processing failed")
             return nil
         }
-        
-           
-        
-        
-        
+     
     }
     
     

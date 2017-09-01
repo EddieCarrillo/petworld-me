@@ -52,11 +52,9 @@ class CommentTableViewCell: UITableViewCell {
                     //Pet was not loaded properly
                 }
                 
-                if let commentText = comment.text{
-                    self.commentLabel.text = commentText
-                }else{
-                    print("Trouble loading comment text.")
-                }
+                
+                    self.commentLabel.text = comment.text
+                
 
             
                 }

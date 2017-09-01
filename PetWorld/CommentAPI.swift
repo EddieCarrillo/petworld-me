@@ -19,9 +19,12 @@ class CommentAPI{
     
     }
     
-    class func postCreate(comment: Comment, from postId: String, onFinished: (Comment?, Error?) -> Void){
+    class func create(comment: Comment, for postId: Post, onFinished: (Comment?, Error?) -> Void){
     
+        
     }
+    
+    
     
     
     

@@ -61,16 +61,10 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func onPostButtonTapped(_ sender: Any) {
         
         //Create new comment an init member fields
-        let newComment = Comment()
-        newComment.text = self.commentTextField.text
         
-        
-        let currentPet = Pet.currentPet()
-        print(currentPet)
-        
+        let newComment = Comment(text: self.commentTextField.text!, authorId: (Pet.currentPet()?.objectId)!, postId: (self.post?.objectId!)!)
+        //Actual object links for local use
         newComment.author = Pet.currentPet()
-        
-        //Create link (relationship) Comment -> Post
         newComment.post = self.post
         
         //Create link (relationship) from Post -> Comment

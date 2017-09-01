@@ -58,12 +58,13 @@ class PetTests: XCTestCase {
                 XCTFail("Trouble getting posts")
             }else if let pets = pets{
                 //Pets were returned (not a failure)
+                 expecting.fulfill()
                 
             }else{
                 XCTFail("No pets returned")
             }
             
-            expecting.fulfill()
+           
             
         }
         

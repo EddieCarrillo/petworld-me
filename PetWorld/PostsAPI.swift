@@ -9,7 +9,18 @@
 import UIKit
 
 class PostsAPI{
-    let path = "/posts"
+  static let path = "/posts"
+  static let postMethod = "POST"
+  static let getMethod = "GET"
+    
+    
+    
+    
+    
+   class func create(new post: Post, onFinished: (Post?, Error?) -> Void){
+        let url = "\(NetworkAPI.apiBaseUrl)\(path)"
+    
+    }
 
 
 }

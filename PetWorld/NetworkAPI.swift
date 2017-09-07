@@ -22,38 +22,38 @@ class NetworkAPI: NSObject {
 //            if let error = error{
 //                print("error: \(error)")
 //            }else{
-//                
+//
 //                let queue = OperationQueue()
-//               
+//
 //                if let imageData = imageData{
 //                    queue.addOperation {
 //                        picture = UIImage(data: imageData)
 //                        OperationQueue.main.addOperation {
 //                           successBlock!(picture!)
 //                        }
-//                        
+//
 //                    }
-//                    
+//
 //                }
 //            }
-//            
+//
 //        }) { (int: Int32) in
 //            print("totalProgress: \(int)%")
 //        }
-//        
-//        
+//
+//
 //        return picture
 //        
-//        
+//
 //    }
+//
+//
     
-    
-
     
     
     class func loadPets(finishedDownloading: @escaping ([Pet])->Void){
         
-            }
+    }
     
     
     
@@ -63,47 +63,47 @@ class NetworkAPI: NSObject {
     
     
 //    class func postUserImage(photo: UIImage, caption: String?, success: PFBooleanResultBlock?) {
-//       
-//        
+//
+//
 //    }
     
-//    
-//    class func getHomeFeed(numPosts: Int, forPet: Pet,  successHandler: @escaping ([Post])->(),  errorHandler: ((Error)->())?){
+    
+    class func getHomeFeed(numPosts: Int, forPet: Pet,  successHandler: @escaping ([Post])->(),  errorHandler: ((Error)->())?){
 //        // Query
 //        let query = PFQuery(className: "Post")
 //     print(forPet)
 //        let following = Array(forPet.following!.values)
 //        let array = Array(forPet.following!.values)
-//        
+//
 //        print(array)
 //        query.whereKey("author", containedIn: following)
 //        query.includeKey("author")
 //        query.order(byDescending: "_created_at")
 //        //Populate the pet data field.
-//        
-//    
-//        
+//
+//
+//
 //        query.limit = numPosts
-//        
-//        
+//
+//
 //        query.findObjectsInBackground { (postObjects: [PFObject]?, error: Error?) in
-//           
+//
 //    }
-//    
-//    }
+        
+    }
     
         
     class func loadCurrentUser(){}
     
    
     
-//    class func loadOwner(userObject: PFObject, completionHandler: @escaping ()->(), errorHandler: (()->())?){
+//    class func loadOwner(userId: PFObject, completionHandler: @escaping ()->(), errorHandler: (()->())?){
 //    }
-//    
-//    class func loadPet(petObject: PFObject, completionHandler:  (()->())?, errorHandler: (()->())?){
-//       
+//
+//    class func loadPet(petId: PFObject, completionHandler:  (()->())?, errorHandler: (()->())?){
+//
 //    }
-//    
+//
     
     
     
@@ -128,22 +128,22 @@ class NetworkAPI: NSObject {
        
         }
     
-//    
+//
 //    class func postComment(comment: Comment, successBlock: PFBooleanResultBlock?){
-//        
-//        
+//
+//
 //    }
-//    
-    
+//
+//
 //    class func update(post: Post, withResult: @escaping PFBooleanResultBlock){
-//      
+//
 //    }
-    
+//
 //    class func toggleLiked(withPost: Post, byPet: Pet, withState liked: Bool, completionHandler: @escaping PFBooleanResultBlock){
-//        
-//        
+//
+//
 //    }
-//    
+//
     
     
     class func follow(follower: Pet, followee: Pet, completionHandler: @escaping((Void) -> Void), errorHandler: @escaping((Error)-> Void)){
@@ -155,17 +155,17 @@ class NetworkAPI: NSObject {
         
     }
     
-//    class func createNewPet(withName: String, with profilePic: UIImage, completionHandler: @escaping PFBooleanResultBlock){
-//        
-//    
-//    }
-//    
-//    
-//    class func createNewPet(withPet: Pet, completionHandler: @escaping PFBooleanResultBlock){
-//        
-//        
-//    }
-
+    class func createNewPet(withName: String, with profilePic: UIImage, completionHandler: @escaping((Void) -> Void), errorHandler: @escaping((Error)-> Void)){
+        
+        
+    }
+    
+    
+    class func createNewPet(withPet: Pet,  sucessHandler: @escaping(Pet) -> Void){
+        
+        
+    }
+    
     
     
     

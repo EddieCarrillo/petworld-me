@@ -14,9 +14,9 @@ class CommentAPI{
     static var postMethod = "POST"
     
     
-    class func getComments(from postId: String, onFinished: @escaping([Comment]?, Error?) -> Void){
+    class func getComments(from postId: String, queryParams: Query?, onFinished: @escaping([Comment]?, Error?) -> Void){
         let url = "\(NetworkAPI.apiBaseUrl)\(path)"
-        GeneralNetworkAPI.get(urlString: url, token: nil) { (data: Data?, error: Error?) in
+        GeneralNetworkAPI.get(urlString: url, token: nil, queryParams: queryParams) { (data: Data?, error: Error?) in
             if let error = error{
                 onFinished(nil, NSError(domain: "Couldn't create comment.", code: 404, userInfo: [:]))
                 return;

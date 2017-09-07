@@ -16,17 +16,22 @@ class GeneralNetworkAPI{
     static let authorization = "Authorization"
     static let bearer = "Bearer "
     
-   class func get(urlString: String, token: String?, onFinished: @escaping (Data?, Error?) -> Void){
-//    
-//    var queryParams: [String: String]?
-//    if let queryParams = queryParams{
-//        let queryString = createQueryString(queryParams: queryParams)
-//        urlString = "\(urlString)\(queryString) "
-//    }
-        guard let url = URL(string: urlString) else {
+    class func get(urlString: String, token: String?, queryParams: Query?, onFinished: @escaping (Data?, Error?) -> Void){
+        
+        guard var urlComponents: URLComponents = URLComponents(string: urlString) else {
             onFinished(nil, NSError(domain: "Bad URL", code: 404, userInfo: nil))
             return;
         }
+        
+        if let query = queryParams {
+            urlComponents.queryItems = query.createQuery()
+        }
+       
+        guard let url = urlComponents.url else {
+            onFinished(nil, NSError(domain: "Bad URL", code: 404, userInfo: nil))
+            return;
+        }
+        
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         var request = URLRequest(url: url)
@@ -108,34 +113,17 @@ class GeneralNetworkAPI{
         }
         
         task.resume()
-        
-        
-        
-        
-        
+    
     
     }
     
     
-     class func createQueryString(queryParams: [String: String]) -> String{
-        //Start of query
-       var queryString = "?"
-        for (key, value) in queryParams{
-            //?key1=value&key2=value2&key3=value3
-            queryString = "\(queryString)\(key)=\(value)&"
-            print("queryString: \(queryString)")
-        }
-        print("size: \(queryString.characters.count)")
-        print("endIndex \(queryString)" )
-        //Remove the ampersand at the end
-        queryString = queryString.substring(to: queryString.index(before: queryString.endIndex))
-        
-        return queryString
-    }
-    
+     
     
 
 
 }
+
+
 
 

@@ -22,8 +22,8 @@ class PetsAPI{
     
     
     
-    class func getPets(onFinished: @escaping ([Pet]? ,Error?) -> Void){
-        GeneralNetworkAPI.get(urlString: "\(NetworkAPI.apiBaseUrl)\(path)", token: nil) { (data: Data?, error: Error?) in
+    class func getPets(queryParams: Query?, onFinished: @escaping ([Pet]? ,Error?) -> Void){
+        GeneralNetworkAPI.get(urlString: "\(NetworkAPI.apiBaseUrl)\(path)", token: nil, queryParams: queryParams) { (data: Data?, error: Error?) in
             if let error = error {
                 onFinished(nil, error)
             }else if let data = data{
@@ -58,19 +58,12 @@ class PetsAPI{
    
     
     
-    //Params
-    //owner - ID of the owner
-    class func getPets(from owner: String, onFinished: @escaping (Pet?, Error?) -> Void ){
-        let url = URL(string: "\(NetworkAPI.apiBaseUrl)\(path)")
-    
-    }
-    
     
     
     
     class func getPet(with id: String, onFinished: @escaping (Pet? ,Error?) -> Void){
-        let url = "\(NetworkAPI.apiBaseUrl)\(path)/\(id)"
-        GeneralNetworkAPI.get(urlString: url, token: nil) { (data: Data?, error: Error?) in
+        let url = "\(NetworkAPI.apiBaseUrl)\(path)/id/\(id)"
+        GeneralNetworkAPI.get(urlString: url, token: nil, queryParams: nil) { (data: Data?, error: Error?) in
             if let error = error {
                 onFinished(nil, error)
             }else if let data = data{
@@ -97,7 +90,7 @@ class PetsAPI{
     
     class func put(pet: Pet, withId: String, token: String, onFinished: @escaping (Pet?, Error?) -> Void){
         
-        let url = "\(NetworkAPI.apiBaseUrl)\(path)/\(withId)"
+        let url = "\(NetworkAPI.apiBaseUrl)\(path)/id/\(withId)"
         guard let jsonPetBody = pet.toJson() else {
             onFinished(nil, NSError(domain: "Trouble parsing json", code: 404, userInfo: nil))
             return;

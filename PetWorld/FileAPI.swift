@@ -27,7 +27,7 @@ class FileAPI{
     
     
     class func get(imageId id: String, success: @escaping (UIImage) -> Void, fail: @escaping (Error) -> Void ){
-        let url = URL(string: "\(NetworkAPI.apiBaseUrl)\(path)/\(id)")
+        let url = URL(string: "\(NetworkAPI.apiBaseUrl)\(path)/id/\(id)")
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         var request = URLRequest(url: url!)

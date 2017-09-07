@@ -25,13 +25,25 @@ class PetWorldTests: XCTestCase {
     //Because
     func testToQueryString(){
         let queryParams: [String: String] = ["pet": "lammy", "owner": "Eddie", "size": "large"]
-        let queryString =  GeneralNetworkAPI.createQueryString(queryParams: queryParams)
+        let queryString =  Query.createQueryString(queryParams: queryParams)
         print("\(queryString)")
         
         XCTAssert(queryString == "?owner=Eddie&size=large&pet=lammy")
     
     }
     
-    
+    func testEncodeJson(){
+        
+        let dictionary: [String: Any] = ["where": ["owner": "59aef169256ec2132ea6a392"], "include": "owner"]
+        
+        var jsonString: String = Query.stringifyJSON(dictionary: dictionary)
+        print("[jsonstring]: \(jsonString)")
+        print("string length: \(jsonString.characters.count)")
+        XCTAssert(jsonString ?? "bad " != "")
+        
+        
+    }
     
 }
+
+

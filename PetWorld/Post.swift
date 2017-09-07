@@ -54,6 +54,7 @@ init(caption: String, mediaFileId: String, authorId: String){
         self.authorId = authorId
     }
 
+
 //Unpopulated fields init
 init(jsonMap: [String: Any]){
     if let caption = jsonMap["caption"] as? String{

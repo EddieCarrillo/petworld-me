@@ -12,11 +12,8 @@ class PostsAPI{
   static let path = "/posts"
   static let postMethod = "POST"
   static let getMethod = "GET"
+    
   static let badJSONSerialization = 404
-    
-    
-    
-    
     
     class func create(new post: Post, token: String, onFinished: @escaping(Post?, Error?) -> Void){
         let url = "\(NetworkAPI.apiBaseUrl)\(path)"
@@ -36,7 +33,6 @@ class PostsAPI{
                     
                 }catch{
                     onFinished(nil, NSError(domain: "Trouble deserializing json", code: 404, userInfo: nil))
-                    
                 }
                 
                 if let jsonPost = jsonPostRes{
@@ -52,9 +48,9 @@ class PostsAPI{
     
     }
     
-   class func get(post byId: String, onFinished: @escaping(Post?, Error?) -> Void){
-        let url: String = "\(NetworkAPI.apiBaseUrl)\(path)/\(byId)"
-    GeneralNetworkAPI.get(urlString: url, token: nil) { (data: Data?, error: Error?) in
+    class func get(post byId: String, queryParams: Query?, onFinished: @escaping(Post?, Error?) -> Void){
+        let url: String = "\(NetworkAPI.apiBaseUrl)\(path)/id/\(byId)"
+    GeneralNetworkAPI.get(urlString: url, token: nil, queryParams: queryParams) { (data: Data?, error: Error?) in
         if let error = error{
             onFinished(nil, error)
             return;
@@ -77,8 +73,8 @@ class PostsAPI{
             }
         }
         } 
-        
-    }
-
+    
+}
+    
 
 }

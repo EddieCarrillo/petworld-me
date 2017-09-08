@@ -66,7 +66,7 @@ class PostTests: XCTestCase {
     
     
     func testCreatePost(){
-         var expecting = expectation(description: "To return created post")
+        var expecting = expectation(description: "To return created post")
         let caption = "meCaptionEh"
         let authorId = "ScottishMate"
         let post = Post(caption: caption, authorId: authorId)
@@ -95,8 +95,8 @@ class PostTests: XCTestCase {
     func testGetPostById(){
         
          var expecting = expectation(description: "To return queried post")
-        let postId = "59acba0674822e2e0f764f57"
-        PostsAPI.get(post: postId) { (post: Post?, error: Error?) in
+        let postId = "59aef4fd256ec2132ea6a39b"
+        PostsAPI.get(post: postId, queryParams: nil) { (post: Post?, error: Error?) in
             if let error = error {
                 XCTFail("error \(error)")
             }else if let post = post{
@@ -118,6 +118,8 @@ class PostTests: XCTestCase {
     }
         
         
-    }
     
+    
+
+}
 

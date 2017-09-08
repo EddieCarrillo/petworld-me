@@ -8,6 +8,7 @@
 
 import XCTest
 
+
 @testable import PetWorld
 
 class FileTests: XCTestCase {
@@ -19,7 +20,11 @@ class FileTests: XCTestCase {
         FileAPI.post(image: image!, success: { 
             expecting.fulfill()
         }) { (error: Error) in
+            
             XCTFail("File error: \(error.localizedDescription)")
+            
+            XCTFail(error.localizedDescription)
+            
         }
     
         
@@ -33,7 +38,10 @@ class FileTests: XCTestCase {
     func testFileDownload(){
         let expecting = expectation(description: "Should get image data from the server")
         let testImage = "german_sheperd"
-        let imageId = "59acb9ee74822e2e0f764f54"
+        
+        
+        
+        let imageId = "59aef4e5256ec2132ea6a398"
         let image =  UIImage(named: testImage)!
         
         FileAPI.get(imageId: imageId, success: { (image: UIImage) in
@@ -43,6 +51,7 @@ class FileTests: XCTestCase {
         }) { (error: Error) in
             print("error called")
             XCTFail("ERROR: \(error.localizedDescription)" )
+            XCTFail(error.localizedDescription)
         }
      
         waitForExpectations(timeout: 10) { (error: Error?) in

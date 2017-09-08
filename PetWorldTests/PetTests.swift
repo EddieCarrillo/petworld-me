@@ -9,6 +9,7 @@
 import XCTest
 @testable import PetWorld
 
+
 class PetTests: XCTestCase {
     
     
@@ -50,7 +51,7 @@ class PetTests: XCTestCase {
         let expecting = expectation(description: "Should return a list of pets after call")
         
         
-        PetsAPI.getPets { (pets: [Pet]?, error: Error?) in
+        PetsAPI.getPets(queryParams: nil) { (pets: [Pet]?, error: Error?) in
             
             if let error = error{
                 print(error)
@@ -63,9 +64,52 @@ class PetTests: XCTestCase {
                 XCTFail("No pets returned")
             }
             
-           
+        }
+        
+        
+       // let query = ["include":"owner", "where": "owner=\()"]
+        
+        
+        waitForExpectations(timeout: 10) { (error: Error?) in
+            if let error = error{
+                XCTFail("Took to long errors fam \(error)")
+            }
+        }
+    }
+    
+    
+    func testGetPetsWithQuery(){
+        let expecting = expectation(description: "Should return a list of pets that belong to james bond.")
+        var constraints = Query.stringifyJSON(dictionary:["owner": "59aef169256ec2132ea6a394"])
+        guard var encodedConstraints = Query.urlEncodeQueryParam(param: constraints) else {
+            XCTFail("Could not encode constraint")
+            return;
+        }
+        
+        let jamesBondId = "59aef169256ec2132ea6a394"
+        let queryParams = Query()
+        queryParams.includeKey(key: "owner")
+        queryParams.whereKey(key: "owner", equals: jamesBondId)
+        
+        PetsAPI.getPets(queryParams: queryParams) { (pets: [Pet]?, error: Error?) in
+            
+            if let error = error{
+                print(error)
+                XCTFail("Trouble getting posts [ERROR] \(error)")
+            }else if let pets = pets{
+                
+                if pets[0].name == "spike"{
+                    expecting.fulfill()
+                }
+                
+            }else{
+                XCTFail("No pets returned")
+            }
             
         }
+        
+        
+        // let query = ["include":"owner", "where": "owner=\()"]
         
         
         waitForExpectations(timeout: 10) { (error: Error?) in
@@ -78,7 +122,8 @@ class PetTests: XCTestCase {
     
     
     func testGetPetWithId(){
-        let lemonId = "59acb8a574822e2e0f764f52"
+        let lemonId = "59aef169256ec2132ea6a395"
+        
         let expecting = expectation(description: "Should return a pet object with a given id")
         PetsAPI.getPet(with: lemonId) { (pet: Pet?, error: Error?) in
             
@@ -105,7 +150,6 @@ class PetTests: XCTestCase {
     }
     
     func testPetToJson(){
-        
         let name = "ChickenFace"
         let ownerId = "BlahBlah"
         var pet = Pet(name: name, ownerId: ownerId)
@@ -136,20 +180,26 @@ class PetTests: XCTestCase {
             XCTFail("Json body is nil")
         }
         
+        
+        
+        
     }
     
     func testPutPetWithId(){
         let expecting = expectation(description: "Should return a change the  object with a given id")
         
         //Change pet name from Lemon -> SimonLimon on the server
-        let pet = Pet(name: "SimonLimon", ownerId: "59acb8a474822e2e0f764f4e")
-        pet.objectId = "59acb8a574822e2e0f764f52"
+        let pet = Pet(name: "SimonLimon", ownerId: "59aef169256ec2132ea6a392")
+        pet.objectId = "59aef169256ec2132ea6a395"
+        
         
         
         
         if let token = authToken{
             print("token: \(token)")
             PetsAPI.put(pet: pet, withId: pet.objectId!, token: token, onFinished: { (pet: Pet?, error: Error?) in
+                print("[ERROR] \(error)")
+                print("[PET] \(pet)")
                 if let pet = pet{
                     if pet.name == "SimonLimon"{
                         expecting.fulfill()

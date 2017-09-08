@@ -10,6 +10,36 @@ import XCTest
 @testable import PetWorld
 
 class CommentTests: XCTestCase {
+    
+    
+    var authToken: String = ""
+    
+    override func setUp() {
+        super.setUp()
+        var expecting = expectation(description: "To return an auth token")
+        
+        
+        let username = "JonRogawski"
+        let password = "Mathprof123"
+        AuthAPI.login(username: username, password: password) { (token:
+            String?, error:Error?) in
+            if let error = error {
+                print(error)
+            }else if let token = token{
+                self.authToken = token
+                expecting.fulfill()
+            }
+            
+        }
+        
+        waitForExpectations(timeout: 10, handler: { (error: Error?) in
+            if let error = error{
+                print("Request timed out")
+            }
+        })
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+    }
+    
    
     
     func testToJson(){
@@ -40,6 +70,58 @@ class CommentTests: XCTestCase {
         
         
     
+    }
+    
+    
+    func testGetComments(){
+        var expecting = expectation(description: "To return all comments")
+        let postId = ""
+        CommentAPI.getComments(from: postId, queryParams: nil) { (comments: [Comment]?, error: Error?) in
+            
+            if let error = error{
+                XCTFail("ERROR: \(error)")
+            }else if let comments = comments{
+                //Success
+                print(comments)
+                expecting.fulfill()
+            }else{
+                XCTFail("Something weird happened.")
+            }
+        }
+        waitForExpectations(timeout: 4) { (error: Error?) in
+            if let error = error {
+                XCTFail("[ERROR] \(error)")
+            }
+        }
+        
+    }
+    
+    
+    func testCreateComment(){
+        var expecting = expectation(description: "To return created comment")
+        
+        let johnId = "59aef169256ec2132ea6a392"
+        let postId = "59aef4fd256ec2132ea6a39b"
+        
+        let comment = Comment(text: "this is a comment", authorId: johnId, postId: postId )
+        CommentAPI.create(comment: comment, token: authToken, for: postId) { (comment: Comment?, error: Error?) in
+            if let error = error {
+                XCTFail("\(error)")
+            }else  if let comment = comment {
+             //Success
+                expecting.fulfill()
+                
+            }else{
+                XCTFail("Something weird happened")
+            }
+        }
+        
+        waitForExpectations(timeout: 10, handler: { (error: Error?) in
+            if let error = error{
+                print("Request timed out")
+            }
+        })
+        
     }
     
 }

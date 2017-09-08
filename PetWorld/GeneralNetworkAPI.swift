@@ -16,6 +16,7 @@ class GeneralNetworkAPI{
     static let authorization = "Authorization"
     static let bearer = "Bearer "
     
+<<<<<<< HEAD
     class func get(urlString: String, token: String?, queryParams: Query?, onFinished: @escaping (Data?, Error?) -> Void){
         
         guard var urlComponents: URLComponents = URLComponents(string: urlString) else {
@@ -32,6 +33,19 @@ class GeneralNetworkAPI{
             return;
         }
         
+=======
+   class func get(urlString: String, token: String?, onFinished: @escaping (Data?, Error?) -> Void){
+//    
+//    var queryParams: [String: String]?
+//    if let queryParams = queryParams{
+//        let queryString = createQueryString(queryParams: queryParams)
+//        urlString = "\(urlString)\(queryString) "
+//    }
+        guard let url = URL(string: urlString) else {
+            onFinished(nil, NSError(domain: "Bad URL", code: 404, userInfo: nil))
+            return;
+        }
+>>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         var request = URLRequest(url: url)
@@ -49,7 +63,10 @@ class GeneralNetworkAPI{
                 onFinished(nil, error)
             }else if let response = response{
                 let response = response as! HTTPURLResponse
+<<<<<<< HEAD
               //  print("response: \(response)")
+=======
+>>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
                 let code = response.statusCode
                 if (code != 200 && code != 201){
                     onFinished(nil, error)
@@ -113,17 +130,47 @@ class GeneralNetworkAPI{
         }
         
         task.resume()
+<<<<<<< HEAD
     
+=======
+        
+        
+        
+        
+        
+>>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
     
     }
     
     
+<<<<<<< HEAD
      
+=======
+     class func createQueryString(queryParams: [String: String]) -> String{
+        //Start of query
+       var queryString = "?"
+        for (key, value) in queryParams{
+            //?key1=value&key2=value2&key3=value3
+            queryString = "\(queryString)\(key)=\(value)&"
+            print("queryString: \(queryString)")
+        }
+        print("size: \(queryString.characters.count)")
+        print("endIndex \(queryString)" )
+        //Remove the ampersand at the end
+        queryString = queryString.substring(to: queryString.index(before: queryString.endIndex))
+        
+        return queryString
+    }
+    
+>>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
     
 
 
 }
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31

@@ -7,13 +7,17 @@
 //
 
 import UIKit
+<<<<<<< HEAD
 @testable import PetWorld
+=======
+>>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
 
 class PostsAPI{
   static let path = "/posts"
   static let postMethod = "POST"
   static let getMethod = "GET"
     
+<<<<<<< HEAD
   static let badJSONSerialization = 404
     
     class func create(new post: Post, token: String, onFinished: @escaping(Post?, Error?) -> Void){
@@ -106,5 +110,16 @@ class PostsAPI{
     
 }
     
+=======
+    
+    
+    
+    
+   class func create(new post: Post, onFinished: (Post?, Error?) -> Void){
+        let url = "\(NetworkAPI.apiBaseUrl)\(path)"
+    
+    }
+
+>>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
 
 }

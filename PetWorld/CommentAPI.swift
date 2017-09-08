@@ -14,6 +14,7 @@ class CommentAPI{
     static var postMethod = "POST"
     
     
+<<<<<<< HEAD
     class func getComments(from postId: String, queryParams: Query?, onFinished: @escaping([Comment]?, Error?) -> Void){
         let url = "\(NetworkAPI.apiBaseUrl)\(path)"
         GeneralNetworkAPI.get(urlString: url, token: nil, queryParams: queryParams) { (data: Data?, error: Error?) in
@@ -80,6 +81,15 @@ onFinished(nil, NSError(domain: "Couldn't create from json repsonse.", code: 404
                 }
             }
         }
+=======
+    class func getComments(from postId: String, onFinished: ([Comment]?, Error?) -> Void){
+        
+    
+    }
+    
+    class func create(comment: Comment, for postId: Post, onFinished: (Comment?, Error?) -> Void){
+    
+>>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
         
     }
     

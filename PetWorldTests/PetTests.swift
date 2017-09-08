@@ -8,7 +8,11 @@
 
 import XCTest
 @testable import PetWorld
+<<<<<<< HEAD
 
+=======
+import UIKit
+>>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
 
 class PetTests: XCTestCase {
     
@@ -51,7 +55,11 @@ class PetTests: XCTestCase {
         let expecting = expectation(description: "Should return a list of pets after call")
         
         
+<<<<<<< HEAD
         PetsAPI.getPets(queryParams: nil) { (pets: [Pet]?, error: Error?) in
+=======
+        PetsAPI.getPets { (pets: [Pet]?, error: Error?) in
+>>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
             
             if let error = error{
                 print(error)
@@ -64,6 +72,7 @@ class PetTests: XCTestCase {
                 XCTFail("No pets returned")
             }
             
+<<<<<<< HEAD
         }
         
         
@@ -105,13 +114,19 @@ class PetTests: XCTestCase {
             }else{
                 XCTFail("No pets returned")
             }
+=======
+           
+>>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
             
         }
         
         
+<<<<<<< HEAD
         // let query = ["include":"owner", "where": "owner=\()"]
         
         
+=======
+>>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
         waitForExpectations(timeout: 10) { (error: Error?) in
             if let error = error{
                 XCTFail("Took to long errors fam \(error)")
@@ -122,8 +137,12 @@ class PetTests: XCTestCase {
     
     
     func testGetPetWithId(){
+<<<<<<< HEAD
         let lemonId = "59aef169256ec2132ea6a395"
         
+=======
+        let lemonId = "59a4890ab3b81f130414779b"
+>>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
         let expecting = expectation(description: "Should return a pet object with a given id")
         PetsAPI.getPet(with: lemonId) { (pet: Pet?, error: Error?) in
             
@@ -183,23 +202,35 @@ class PetTests: XCTestCase {
         
         
         
+<<<<<<< HEAD
+=======
+        
+>>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
     }
     
     func testPutPetWithId(){
         let expecting = expectation(description: "Should return a change the  object with a given id")
         
         //Change pet name from Lemon -> SimonLimon on the server
+<<<<<<< HEAD
         let pet = Pet(name: "SimonLimon", ownerId: "59aef169256ec2132ea6a392")
         pet.objectId = "59aef169256ec2132ea6a395"
         
+=======
+        let pet = Pet(name: "SimonLimon", ownerId: "59a48909b3b81f1304147798")
+        pet.objectId = "59a4890ab3b81f130414779b"
+>>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
         
         
         
         if let token = authToken{
             print("token: \(token)")
             PetsAPI.put(pet: pet, withId: pet.objectId!, token: token, onFinished: { (pet: Pet?, error: Error?) in
+<<<<<<< HEAD
                 print("[ERROR] \(error)")
                 print("[PET] \(pet)")
+=======
+>>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
                 if let pet = pet{
                     if pet.name == "SimonLimon"{
                         expecting.fulfill()

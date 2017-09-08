@@ -10,6 +10,7 @@ import XCTest
 @testable import PetWorld
 
 class CommentTests: XCTestCase {
+<<<<<<< HEAD
     
     
     var authToken: String = ""
@@ -40,6 +41,8 @@ class CommentTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
+=======
+>>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
    
     
     func testToJson(){
@@ -72,6 +75,7 @@ class CommentTests: XCTestCase {
     
     }
     
+<<<<<<< HEAD
     
     func testGetComments(){
         var expecting = expectation(description: "To return all comments")
@@ -124,4 +128,6 @@ class CommentTests: XCTestCase {
         
     }
     
+=======
+>>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
 }

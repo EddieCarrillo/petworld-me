@@ -66,9 +66,9 @@ class Pet: NSObject  {
     
      init(jsonMap: [String: Any]){
         print("json to be deconstructed: \(jsonMap)")
-        self.ownerId = jsonMap["owner"] as! String?
-        self.objectId = jsonMap["_id"] as! String?
-        self.name = jsonMap["name"] as! String?
+        self.ownerId = jsonMap["owner"] as? String
+        self.objectId = jsonMap["_id"] as? String
+        self.name = jsonMap["name"] as? String
     }
     
     init(name: String, ownerId: String){

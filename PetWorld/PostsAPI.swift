@@ -7,6 +7,7 @@
 //
 
 import UIKit
+@testable import PetWorld
 
 class PostsAPI{
   static let path = "/posts"
@@ -48,9 +49,38 @@ class PostsAPI{
     
     }
     
-    class func get(post byId: String, queryParams: Query?, onFinished: @escaping(Post?, Error?) -> Void){
+    
+    class func getPosts(query: Query?, onFinished: @escaping ([Post]?, Error?) -> Void){
+        let url: String = "\(NetworkAPI.apiBaseUrl)\(path)"
+        GeneralNetworkAPI.get(urlString: url, token: nil, queryParams: query) { (data: Data?, error: Error?) in
+            if let error = error {
+                onFinished(nil, error)
+                return;
+            }else if let data = data {
+                print("data: \(data)")
+                var postsJson: [[String: Any]]?
+                do{
+                    postsJson = try JSONSerialization.data(withJSONObject: data, options: []    ) as? [[String: Any]]
+                    if let postsJson = postsJson {
+                        var posts: [Post] = []
+                        for postJson in postsJson{
+                            let post  = Post(jsonMap: postJson)
+                            print(postJson)
+                            posts.append(post)
+                        }
+                        onFinished(posts, nil)
+                    }
+                }catch{
+                    onFinished(nil, NSError(domain: "Could not deserailize json", code: 404, userInfo: nil ))
+                }
+                
+            }
+        }
+    }
+    
+    class func get(post byId: String, onFinished: @escaping(Post?, Error?) -> Void){
         let url: String = "\(NetworkAPI.apiBaseUrl)\(path)/id/\(byId)"
-    GeneralNetworkAPI.get(urlString: url, token: nil, queryParams: queryParams) { (data: Data?, error: Error?) in
+    GeneralNetworkAPI.get(urlString: url, token: nil, queryParams: nil) { (data: Data?, error: Error?) in
         if let error = error{
             onFinished(nil, error)
             return;

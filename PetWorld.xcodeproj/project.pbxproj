@@ -86,6 +86,7 @@
 		5E1D58441ED91B970055C09D /* ProfilePictureEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1D58431ED91B970055C09D /* ProfilePictureEditorViewController.swift */; };
 		5E81BC0A1EDA333A002F8915 /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E81BC091EDA333A002F8915 /* dog.jpg */; };
 		5EC637411ED413B7003D67F3 /* PetsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC637401ED413B7003D67F3 /* PetsTableViewCell.swift */; };
+		8C25472F1F61C90400F6F510 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C25472E1F61C90400F6F510 /* Query.swift */; };
 		8CF748D91F5B83B300DC21D8 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CF748D81F5B839600DC21D8 /* MBProgressHUD.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -203,6 +204,7 @@
 		5E1D58431ED91B970055C09D /* ProfilePictureEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePictureEditorViewController.swift; sourceTree = "<group>"; };
 		5E81BC091EDA333A002F8915 /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog.jpg; sourceTree = SOURCE_ROOT; };
 		5EC637401ED413B7003D67F3 /* PetsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetsTableViewCell.swift; sourceTree = "<group>"; };
+		8C25472E1F61C90400F6F510 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		8CF748D31F5B737000DC21D8 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		8CF748D81F5B839600DC21D8 /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MBProgressHUD.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -277,6 +279,7 @@
 				1F75B04F1F55C85C006542CC /* FileAPI.swift */,
 				1F75B0511F55E7F3006542CC /* AuthAPI.swift */,
 				1F87B7D21F589CCE00D09005 /* GeneralNetworkAPI.swift */,
+				8C25472E1F61C90400F6F510 /* Query.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -674,6 +677,7 @@
 				1F9CF7081F08233D00F0F072 /* DesignableButton.swift in Sources */,
 				1F59EBE91F1D300400A2CBE2 /* EditProfileView.swift in Sources */,
 				1F9CF70A1F09E19900F0F072 /* TextManipulation.swift in Sources */,
+				8C25472F1F61C90400F6F510 /* Query.swift in Sources */,
 				1F35EE111F280AB4001B9569 /* LoadingViewController.swift in Sources */,
 				1F43B1401F1059A1001D9CC1 /* TutorialPageViewController.swift in Sources */,
 				1F5ADA051F23DD7500C84BCC /* Comment.swift in Sources */,

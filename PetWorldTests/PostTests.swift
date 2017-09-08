@@ -96,7 +96,7 @@ class PostTests: XCTestCase {
         
          var expecting = expectation(description: "To return queried post")
         let postId = "59aef4fd256ec2132ea6a39b"
-        PostsAPI.get(post: postId, queryParams: nil) { (post: Post?, error: Error?) in
+        PostsAPI.get(post: postId) { (post: Post?, error: Error?) in
             if let error = error {
                 XCTFail("error \(error)")
             }else if let post = post{
@@ -104,6 +104,30 @@ class PostTests: XCTestCase {
                 expecting.fulfill()
             }else{
                 XCTFail("Something weird happened: \(error)")
+            }
+        }
+        
+        waitForExpectations(timeout: 10, handler: { (error: Error?) in
+            if let error = error{
+                print("Request timed out")
+            }
+        })
+        
+        
+        
+    }
+    
+    
+    func testGetPosts(){
+        
+        var expecting = expectation(description: "To return posts")
+        let postId = "59aef4fd256ec2132ea6a39b"
+        PostsAPI.getPosts(query: nil) { (posts: [Post]?, error: Error?) in
+            if let error = error{
+                XCTFail("\(error)")
+            }else if let posts = posts{
+                //Sucessful
+                expecting.fulfill()
             }
         }
         

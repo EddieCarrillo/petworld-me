@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+    
+//    (success: Bool, error: Error?)
+typealias PFBooleanResultBlock =  (Bool?, Error?) -> ();
 
 class NetworkAPI: NSObject {
     
@@ -15,7 +17,7 @@ class NetworkAPI: NSObject {
   static let authBaseUrl = "http://localhost:3000/auth"
     
     
-    
+//
 //    class func loadPicture(imageFile: PFFile, successBlock: ((UIImage)->Void)? ) ->UIImage?{
 //        var picture: UIImage?
 //        imageFile.getDataInBackground({ (imageData:Data?, error: Error?) in
@@ -43,7 +45,7 @@ class NetworkAPI: NSObject {
 //
 //
 //        return picture
-//        
+//
 //
 //    }
 //
@@ -62,14 +64,14 @@ class NetworkAPI: NSObject {
 //    }
     
     
-//    class func postUserImage(photo: UIImage, caption: String?, success: PFBooleanResultBlock?) {
-//
-//
-//    }
+    class func postUserImage(photo: UIImage, caption: String?, success: PFBooleanResultBlock?) {
+        
+        
+    }
     
     
     class func getHomeFeed(numPosts: Int, forPet: Pet,  successHandler: @escaping ([Post])->(),  errorHandler: ((Error)->())?){
-//        // Query
+        // Query
 //        let query = PFQuery(className: "Post")
 //     print(forPet)
 //        let following = Array(forPet.following!.values)
@@ -95,15 +97,15 @@ class NetworkAPI: NSObject {
         
     class func loadCurrentUser(){}
     
-   
-    
+//   
+//    
 //    class func loadOwner(userId: PFObject, completionHandler: @escaping ()->(), errorHandler: (()->())?){
 //    }
-//
+//    
 //    class func loadPet(petId: PFObject, completionHandler:  (()->())?, errorHandler: (()->())?){
-//
+//        
 //    }
-//
+    
     
     
     
@@ -128,22 +130,22 @@ class NetworkAPI: NSObject {
        
         }
     
-//
-//    class func postComment(comment: Comment, successBlock: PFBooleanResultBlock?){
-//
-//
-//    }
-//
-//
-//    class func update(post: Post, withResult: @escaping PFBooleanResultBlock){
-//
-//    }
-//
-//    class func toggleLiked(withPost: Post, byPet: Pet, withState liked: Bool, completionHandler: @escaping PFBooleanResultBlock){
-//
-//
-//    }
-//
+    
+    class func postComment(comment: Comment, successBlock: PFBooleanResultBlock?){
+        
+        
+    }
+    
+    
+    class func update(post: Post, withResult: @escaping PFBooleanResultBlock){
+        
+    }
+    
+    class func toggleLiked(withPost: Post, byPet: Pet, withState liked: Bool, completionHandler: @escaping PFBooleanResultBlock){
+        
+        
+    }
+    
     
     
     class func follow(follower: Pet, followee: Pet, completionHandler: @escaping((Void) -> Void), errorHandler: @escaping((Error)-> Void)){
@@ -186,10 +188,8 @@ class NetworkAPI: NSObject {
     }
     
     class func getPosts(numPosts: Int, forPet: Pet, successHandler: @escaping([Post]) -> Void, errorHandler: @escaping(Error) -> Void){
-        
-            
-  
-}
+     
+  }
     
 
     

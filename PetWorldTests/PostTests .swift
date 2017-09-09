@@ -11,7 +11,6 @@ import XCTest
 
 class PostTests: XCTestCase {
     
-<<<<<<< HEAD
     
     var authToken: String = ""
     
@@ -41,8 +40,7 @@ class PostTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
-=======
->>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
+
     func testPostToJson(){
         let post = Post(caption: "#PUGLIF", mediaFileId: "garblegarble", authorId: "lemonlemon")
         var jsonPost = post.toJson()
@@ -67,7 +65,7 @@ class PostTests: XCTestCase {
     
     }
     
-<<<<<<< HEAD
+
     
     func testCreatePost(){
         var expecting = expectation(description: "To return created post")
@@ -149,8 +147,6 @@ class PostTests: XCTestCase {
     
     
 
-}
 
-=======
+
 }
->>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31

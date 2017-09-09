@@ -48,15 +48,12 @@ init(caption: String, mediaFileId: String, authorId: String){
     self.mediaId = mediaFileId
     self.authorId = authorId
 }
-<<<<<<< HEAD
     
     init(caption: String, authorId: String){
         self.caption = caption
         self.authorId = authorId
     }
 
-=======
->>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
 
 //Unpopulated fields init
 init(jsonMap: [String: Any]){

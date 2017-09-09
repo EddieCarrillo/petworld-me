@@ -7,13 +7,10 @@
 //
 
 import UIKit
-<<<<<<< HEAD
     
 //    (success: Bool, error: Error?)
 typealias PFBooleanResultBlock =  (Bool?, Error?) -> ();
-=======
 
->>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
 
 class NetworkAPI: NSObject {
     
@@ -21,33 +18,26 @@ class NetworkAPI: NSObject {
   static let authBaseUrl = "http://localhost:3000/auth"
     
     
-<<<<<<< HEAD
-//
-=======
+
     
->>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
 //    class func loadPicture(imageFile: PFFile, successBlock: ((UIImage)->Void)? ) ->UIImage?{
 //        var picture: UIImage?
 //        imageFile.getDataInBackground({ (imageData:Data?, error: Error?) in
 //            if let error = error{
 //                print("error: \(error)")
 //            }else{
-<<<<<<< HEAD
 //
 //                let queue = OperationQueue()
 //
-=======
-//                
+//
 //                let queue = OperationQueue()
 //               
->>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
 //                if let imageData = imageData{
 //                    queue.addOperation {
 //                        picture = UIImage(data: imageData)
 //                        OperationQueue.main.addOperation {
 //                           successBlock!(picture!)
 //                        }
-<<<<<<< HEAD
 //
 //                    }
 //
@@ -71,8 +61,7 @@ class NetworkAPI: NSObject {
     class func loadPets(finishedDownloading: @escaping ([Pet])->Void){
         
     }
-=======
-//                        
+//
 //                    }
 //                    
 //                }
@@ -92,10 +81,9 @@ class NetworkAPI: NSObject {
 
     
     
-    class func loadPets(finishedDownloading: @escaping ([Pet])->Void){
-        
-            }
->>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
+//    class func loadPets(finishedDownloading: @escaping ([Pet])->Void){
+//        
+//            }
     
     
     
@@ -104,7 +92,6 @@ class NetworkAPI: NSObject {
 //    }
     
     
-<<<<<<< HEAD
     class func postUserImage(photo: UIImage, caption: String?, success: PFBooleanResultBlock?) {
         
         
@@ -113,7 +100,6 @@ class NetworkAPI: NSObject {
     
     class func getHomeFeed(numPosts: Int, forPet: Pet,  successHandler: @escaping ([Post])->(),  errorHandler: ((Error)->())?){
         // Query
-=======
 //    class func postUserImage(photo: UIImage, caption: String?, success: PFBooleanResultBlock?) {
 //       
 //        
@@ -122,22 +108,17 @@ class NetworkAPI: NSObject {
 //    
 //    class func getHomeFeed(numPosts: Int, forPet: Pet,  successHandler: @escaping ([Post])->(),  errorHandler: ((Error)->())?){
 //        // Query
->>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
 //        let query = PFQuery(className: "Post")
 //     print(forPet)
 //        let following = Array(forPet.following!.values)
 //        let array = Array(forPet.following!.values)
-<<<<<<< HEAD
 //
-=======
-//        
->>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
+//
 //        print(array)
 //        query.whereKey("author", containedIn: following)
 //        query.includeKey("author")
 //        query.order(byDescending: "_created_at")
 //        //Populate the pet data field.
-<<<<<<< HEAD
 //
 //
 //
@@ -149,8 +130,7 @@ class NetworkAPI: NSObject {
 //    }
         
     }
-=======
-//        
+//
 //    
 //        
 //        query.limit = numPosts
@@ -161,13 +141,11 @@ class NetworkAPI: NSObject {
 //    }
 //    
 //    }
->>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
     
         
     class func loadCurrentUser(){}
     
-<<<<<<< HEAD
-//   
+//
 //    
 //    class func loadOwner(userId: PFObject, completionHandler: @escaping ()->(), errorHandler: (()->())?){
 //    }
@@ -176,7 +154,6 @@ class NetworkAPI: NSObject {
 //        
 //    }
     
-=======
    
     
 //    class func loadOwner(userObject: PFObject, completionHandler: @escaping ()->(), errorHandler: (()->())?){
@@ -186,7 +163,6 @@ class NetworkAPI: NSObject {
 //       
 //    }
 //    
->>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
     
     
     
@@ -211,7 +187,6 @@ class NetworkAPI: NSObject {
        
         }
     
-<<<<<<< HEAD
     
     class func postComment(comment: Comment, successBlock: PFBooleanResultBlock?){
         
@@ -228,8 +203,7 @@ class NetworkAPI: NSObject {
         
     }
     
-=======
-//    
+//
 //    class func postComment(comment: Comment, successBlock: PFBooleanResultBlock?){
 //        
 //        
@@ -245,7 +219,6 @@ class NetworkAPI: NSObject {
 //        
 //    }
 //    
->>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
     
     
     class func follow(follower: Pet, followee: Pet, completionHandler: @escaping((Void) -> Void), errorHandler: @escaping((Error)-> Void)){
@@ -256,8 +229,6 @@ class NetworkAPI: NSObject {
     class func unfollow(follower: Pet, followee: Pet, completionHandler: @escaping((Void) -> Void), errorHandler: @escaping((Error)-> Void)){
         
     }
-    
-<<<<<<< HEAD
     class func createNewPet(withName: String, with profilePic: UIImage, completionHandler: @escaping((Void) -> Void), errorHandler: @escaping((Error)-> Void)){
         
         
@@ -269,7 +240,6 @@ class NetworkAPI: NSObject {
         
     }
     
-=======
 //    class func createNewPet(withName: String, with profilePic: UIImage, completionHandler: @escaping PFBooleanResultBlock){
 //        
 //    
@@ -281,7 +251,6 @@ class NetworkAPI: NSObject {
 //        
 //    }
 
->>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
     
     
     
@@ -302,19 +271,16 @@ class NetworkAPI: NSObject {
     }
     
     class func getPosts(numPosts: Int, forPet: Pet, successHandler: @escaping([Post]) -> Void, errorHandler: @escaping(Error) -> Void){
-<<<<<<< HEAD
      
   }
-=======
-        
+    
             
   
 }
->>>>>>> e31c44122ab2d46bc376642fd254377a5819ab31
     
 
     
-    }
+    
     
     
 

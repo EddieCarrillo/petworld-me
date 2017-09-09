@@ -27,16 +27,16 @@ class PostsAPI{
             if let error = error {
                 onFinished(nil, NSError(domain: "Trouble deserializing json", code: 404, userInfo: nil))
             }else if let data = data{
-                var jsonPostRes: [String: Any]?
+                var jsonBody: [String: Any]?
                 
                 do{
-                    jsonPostRes = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                    jsonBody = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
                     
                 }catch{
                     onFinished(nil, NSError(domain: "Trouble deserializing json", code: 404, userInfo: nil))
                 }
                 
-                if let jsonPost = jsonPostRes{
+                if let jsonPost = jsonBody{
                     let post = Post(jsonMap: jsonPost)
                     onFinished(post, nil)
                 }else{
@@ -60,7 +60,7 @@ class PostsAPI{
                 print("data: \(data)")
                 var postsJson: [[String: Any]]?
                 do{
-                    postsJson = try JSONSerialization.data(withJSONObject: data, options: []    ) as? [[String: Any]]
+                    postsJson = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]]
                     if let postsJson = postsJson {
                         var posts: [Post] = []
                         for postJson in postsJson{

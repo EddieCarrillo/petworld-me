@@ -112,6 +112,11 @@ class Query{
     //Prepares include statements as  [includee command]=[val1],[val2],[val3]
     private func prepIncludes() -> String{
         var includeString = ""
+        
+        if self.includes.count <= 0 {
+            return  "";
+        }
+        
         for property in self.includes{
             includeString.append("\(property),")
         }

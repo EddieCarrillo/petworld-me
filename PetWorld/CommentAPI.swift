@@ -83,15 +83,7 @@ onFinished(nil, NSError(domain: "Couldn't create from json repsonse.", code: 404
     }
     
     
-    class func getComments(from postId: String, onFinished: ([Comment]?, Error?) -> Void){
-        
-    
-    }
-    
-    class func create(comment: Comment, for postId: Post, onFinished: (Comment?, Error?) -> Void){
-    
-        
-    }
+   
     
     
     

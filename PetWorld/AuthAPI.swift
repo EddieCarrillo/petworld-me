@@ -49,9 +49,34 @@ class AuthAPI{
         }
     }
    
+    }
     
     
-    
+   class func checkValid(token: String, onFinished: @escaping(User?, Error?) -> ()){
+        let url = "\(NetworkAPI.authBaseUrl)/checkValidToken"
+        guard let jsonBody = ["token" : token].toJson() else {
+            print("Trouble converting dictionary to json")
+            onFinished(nil, NSError(domain: "Could not convert dictionary to json", code: 404, userInfo: nil))
+            return;
+        }
+        GeneralNetworkAPI.post(urlString: url, requestBody: jsonBody, token: nil) { (data: Data?, error: Error?) in
+            if let error = error {
+                onFinished(nil, error)
+            }else if let data = data{
+                var  jsonUser: [String:Any]?
+                do {
+                    jsonUser = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                    if let jsonUser = jsonUser{
+                        let user = User(jsonMap: jsonUser)
+                        onFinished(user, nil)
+                    }
+                    
+                }catch {
+                    onFinished(nil, NSError(domain: "Problem converting json -> object", code: 404, userInfo: nil))
+                    
+                }
+            }
+        }
     }
 
 }

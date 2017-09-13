@@ -108,12 +108,29 @@ class PostsAPI{
     
     
     
-    
-    
-   class func create(new post: Post, onFinished: (Post?, Error?) -> Void){
-        let url = "\(NetworkAPI.apiBaseUrl)\(path)"
-    
-    }
-
+//    class func update(post: Post, token: String, onFinished: @escaping(Post?, Error?) -> ()){
+//        let url = "\(NetworkAPI.apiBaseUrl)\(path)"
+//        guard let jsonPost = post.toJson() else {
+//            onFinished(nil, NSError(domain: "Could not get json", code: 404, userInfo: nil))
+//            return;
+//        }
+//        
+//        GeneralNetworkAPI.put(urlString: url, requestBody: jsonPost, token: token) { (data Data?, error: Error?) in
+//            if let error = error {
+//                onFinished(nil, error)
+//            }else if let data = data{
+//                var jsonResponsePost: [String: Any]?s
+//                do {
+//                    jsonResponsePost = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+//                    if let jsonResponsePost = jsonResponsePost{
+//                        let post = Post(jsonMap: jsonResponsePost)
+//                        onFinished(post, nil)
+//                    }
+//                }catch{
+//                    onFinished(nil, NSError(domain: "Could not convert to object", code: 404, userInfo: nil))
+//                }
+//            }
+//        }
+//    }
 
 }

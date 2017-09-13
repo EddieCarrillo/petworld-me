@@ -47,9 +47,13 @@ class FileAPI{
                     let error = NSError(domain: "Bad request", code: code, userInfo: nil)
                     fail(error)
                 }else if let data = data{
-                    let image = UIImage(data: data)
-                    print("sucess")
-                    success(image!)
+                    let queue = OperationQueue()
+                    queue.addOperation({ 
+                        let image = UIImage(data: data)
+                        print("sucess")
+                        success(image!)
+                    })
+                   
                 }
                 
             }
@@ -65,7 +69,7 @@ class FileAPI{
     }
     
     
-   class func post(image: UIImage,success: @escaping () -> Void, fail: @escaping (Error) -> Void){
+   class func post(image: UIImage,success: @escaping (String) -> Void, fail: @escaping (Error) -> Void){
         let url = URL(string: "\(NetworkAPI.apiBaseUrl)\(path)\(uploadPathParam)")
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
@@ -99,11 +103,12 @@ class FileAPI{
                     }
                     
                     if let jsonBody = jsonBody{
-                        let ok = jsonBody["ok"] as! String
-                        if ok == "ok"{
-//                            print(jsonBody)
-                            success()
+                        if let id = jsonBody["id"] as? String {
+                            print("[JSONBODY]: \(jsonBody)")
+                            success(id)
                         }
+                        
+
                     }else{
                         fail(NSError(domain: "Could not deserialize json", code: code, userInfo: nil))
                         

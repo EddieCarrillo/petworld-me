@@ -15,6 +15,7 @@ class GeneralNetworkAPI{
     static let applicationJson = "application/json"
     static let authorization = "Authorization"
     static let bearer = "Bearer "
+    static let httpAuthError = 401;
     
     class func get(urlString: String, token: String?, queryParams: Query?, onFinished: @escaping (Data?, Error?) -> Void){
         
@@ -52,20 +53,25 @@ class GeneralNetworkAPI{
             request.setValue( "\(bearer)\(token)", forHTTPHeaderField: authorization)
         }
         
-        let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
-            if let error = error{
-                onFinished(nil, error)
-            }else if let response = response{
-                let response = response as! HTTPURLResponse
-              //  print("response: \(response)")
-                let code = response.statusCode
-                if (code != 200 && code != 201){
-                    onFinished(nil, error)
-                }else if let data = data{
-                    onFinished(data, nil)
+            let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+                OperationQueue.main.addOperation {
+                    if let error = error{
+                        onFinished(nil, error)
+                    }else if let response = response{
+                        let response = response as! HTTPURLResponse
+                        //  print("response: \(response)")
+                        let code = response.statusCode
+                        if (code != 200 && code != 201){
+                            checkTokenError(code: code)
+                            onFinished(nil, error)
+                        }else if let data = data{
+                            onFinished(data, nil)
+                        }
+                    }
                 }
+               
             }
-        }
+        
         
         task.resume()
         
@@ -73,12 +79,17 @@ class GeneralNetworkAPI{
     }
     
     class func post(urlString: String, requestBody: Data, token: String?,  onFinished: @escaping (Data?, Error?) -> Void){
-         putOrPost(httpMethod: "POST", urlString: urlString, requestBody: requestBody, token: token, onFinished: onFinished)
+        OperationQueue().addOperation({
+            putOrPost(httpMethod: "POST", urlString: urlString, requestBody: requestBody, token: token, onFinished: onFinished)
+        })
+        
     
     }
     
     class func put(urlString: String, requestBody: Data, token: String?,  onFinished: @escaping (Data?, Error?) -> Void){
-        putOrPost(httpMethod: "PUT", urlString: urlString, requestBody: requestBody, token: token, onFinished: onFinished)
+        OperationQueue().addOperation({
+            putOrPost(httpMethod: "PUT", urlString: urlString, requestBody: requestBody, token: token, onFinished: onFinished)
+        })
         
     }
     
@@ -107,25 +118,27 @@ class GeneralNetworkAPI{
         }
         
         let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
-            if let error = error{
-                onFinished(nil, error)
-            }else if let response = response{
-                let response = response as! HTTPURLResponse
-                let code = response.statusCode
-                if (code != 200 && code != 201){
+            
+            OperationQueue.main.addOperation {
+                if let error = error{
                     onFinished(nil, error)
-                }else if let data = data{
-                    onFinished(data, nil)
+                }else if let response = response{
+                    let response = response as! HTTPURLResponse
+                    let code = response.statusCode
+                    if (code != 200 && code != 201){
+                        checkTokenError(code: code)
+                        onFinished(nil, error)
+                    }else if let data = data{
+                        onFinished(data, nil)
+                    }
                 }
+                
             }
+            
         }
         
         task.resume()
-        
-        
-        
-        
-        
+    
     
     }
     
@@ -147,10 +160,21 @@ class GeneralNetworkAPI{
         return queryString
     }
     
+    private class func checkTokenError (code: Int){
+        if code == 401 {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: NetworkAPI.needLoginNotification), object: nil)
+        }
+    }
     
 
 
 }
+
+
+
+
+
+
 
 
 

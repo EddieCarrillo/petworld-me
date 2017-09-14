@@ -70,14 +70,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             })
         }
 
-        
-        if (!isDetailView){
-            if (!isLoadingPosts){
-                isLoadingPosts = true
-                loadPosts()
+        OperationQueue.main.addOperation {
+            if (!self.isDetailView){
+                if (!self.isLoadingPosts){
+                    self.isLoadingPosts = true
+                    self.loadPosts()
+                }
+                
             }
-        
         }
+        
         
         
         
@@ -95,7 +97,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.headerView.leftButton.isHidden = true
             if (!isLoadingPosts){
                 isLoadingPosts = true
-                loadPosts()
+                OperationQueue.main.addOperation {
+                    self.loadPosts()
+                }
             }
         
         }else{
@@ -198,39 +202,41 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
        
         if let pet = Pet.currentPet(){
             //Start loading
-            MBProgressHUD.showAdded(to: self.view, animated: true)
-            
-//            NetworkAPI.getHomeFeed(numPosts: 20, forPet: pet,   successHandler: { (posts: [Post]) in
-//                //Finished loading pets
-//                self.isLoadingPosts = false
-//                MBProgressHUD.hide(for: self.view, animated: true)
-//                //Update the GUI
-//                self.posts = posts
-//                print("_____\n\n\nfinished loading!!!\n\n\n________")
-//                for post in posts{
-//                self.checkIfPostIsLiked(post: post)
-//                }
-//                
-//                if posts.count <= 0 {
-//                self.tableView.isHidden = true
-//                    self.emptyView.isHidden = false
-//                }else{
-//                self.tableView.isHidden = false
-//                    self.emptyView.isHidden = true
-//                }
-//                
-//                self.tableView.reloadData()
-//                
-//                if (!self.isLoadingComments){
-//                for post in posts{
-//                self.loadComments(forPost: post)
-//                }
-//                }
-//                
-//            }) { (error: Error) in
-//                MBProgressHUD.hide(for: self.view, animated: true)
-//                print(error)
-//            }
+            let api = NetworkAPI.sharedInstance
+            //MBProgressHUD.showAdded(to: self.view, animated: true)
+            api.getHomeFeed(numPosts: 20, forPet: pet,   successHandler: { (posts: [Post]) in
+                //Finished loading pets
+                self.isLoadingPosts = false
+              //  MBProgressHUD.hide(for: self.view, animated: true)
+                //Update the GUI
+                self.posts = posts
+                print("_____\n\n\nfinished loading!!!\n\n\n________")
+                for post in posts{
+                self.checkIfPostIsLiked(post: post)
+                }
+                
+                if posts.count <= 0 {
+                self.tableView.isHidden = true
+                    self.emptyView.isHidden = false
+                }else{
+                self.tableView.isHidden = false
+                    self.emptyView.isHidden = true
+                }
+                
+                self.tableView.reloadData()
+                
+                if (!self.isLoadingComments){
+                for post in posts{
+                self.loadComments(forPost: post)
+                }
+                }
+                
+            }) { (error: Error) in
+           //     MBProgressHUD.hide(for: self.view, animated: true)
+                print(error)
+                self.isLoadingPosts = false
+
+            }
         
         }
         
@@ -240,14 +246,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
       
     
     func loadComments(forPost: Post){
+        let networkAPI = NetworkAPI.sharedInstance
         self.isLoadingComments = true
-        NetworkAPI.getComments(withPost: forPost, populateFields: true, successHandler: { (comments: [Comment]) in
+        networkAPI.getComments(withPost: forPost, populateFields: true, successHandler: { (comments: [Comment]) in
             
             forPost.comments = comments
             self.isLoadingComments = false
             
         }) { (error: Error) in
             print("error occurred loading comments!")
+            
         }
     }
     

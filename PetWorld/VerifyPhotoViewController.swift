@@ -43,32 +43,48 @@ class VerifyPhotoViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func onPost(_ sender: Any) {
+        
+        print("onPost() called!") 
+        let api = NetworkAPI.sharedInstance
+        guard let currentPet = Pet.currentPet() else {
+            print("No current pet.")
+            return;
+        }
         // caption
         let captionText = caption.text
         // post photo
-        let resizedImage = NetworkAPI.resize(photo: self.chosenPicture.image!, newSize: CGSize(width: 240, height: 240))
-            let post = Post()
-//            post.media = NetworkAPI.getPhotoFile(photo: resizedImage)
-//            NetworkAPI.postUserImage(photo: resizedImage, caption: captionText) { (success: Bool, error: Error?) in
-//                if let error = error{
-//                    print("error occured")
-//                    self.postFailure?(post, error)
-//                    //Tell the home view controller that there was some error.
-//                }else{
-//                    if success{
-//                        self.postSuccesful?(post)
-//                    }
-//                }
-//                
-//        }
+        let resizedImage = api.resize(photo: self.chosenPicture.image!, newSize: CGSize(width: 240, height: 240))
         
-       postDismiss()
+        let post = Post()
+        //COMMIT... to the grind.
+        post.author = currentPet
+        post.authorId = currentPet.objectId!
+        post.caption = captionText
+        
+        api.uploadImageFile(image: resizedImage, successHandler: { (mediaFile: MediaFile) in
+            post.mediaFile = mediaFile
+            post.image = mediaFile.image
+            post.mediaId = mediaFile.objectId
+            
+            self.saveNewPost(post: post)
+           
+        }) { (error: Error) in
+                print("[ERROR]: \(error)")
+        }
+        
     
     }
     
     
     
-    
+    func saveNewPost(post: Post){
+        let api =   NetworkAPI.sharedInstance
+        api.create(newPost: post, successHandler: {
+            self.postDismiss()
+        }, errorHandler: { (error: Error) in
+            print("Could not create new post: \(error)")
+        })
+    }
    
     func postDismiss(){
         self.dismiss(animated: false) { 

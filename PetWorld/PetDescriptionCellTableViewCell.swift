@@ -24,7 +24,7 @@ class PetDescriptionCellTableViewCell: UITableViewCell {
                 petNameLabel.text = petName
             }
             
-            if let petImage = pet.image{
+            if let petImage = pet.imageFile?.image{
                 petImageView.image = petImage
             }
             

@@ -19,22 +19,22 @@ class CommentTableViewCell: UITableViewCell {
  
     var comment: Comment? {
         didSet{
-            
+            let api = NetworkAPI.sharedInstance
             if let comment = comment{
                 
                 if let pet = comment.author{
                     if let profileImage = pet.image{
                         self.profileImageView.image = profileImage
                     }else{
-//                        let petImage: PFFile? = pet["image"] as? PFFile
-//                        if let petImage = petImage{
-//                            //Pet has no image
-////                            NetworkAPI.loadPicture(imageFile: pet["image"] as! PFFile, successBlock: { (image:UIImage) in
-////                                pet.image = image
-////                                self.profileImageView.image = image
-////                            })
-//                            
-//                        }
+                        let petImage: MediaFile? = pet.imageFile
+                        if let petImage = petImage{
+                            //Pet has no image
+                            api.loadPicture(imageFile: petImage, successBlock: { (image:UIImage) in
+                                pet.image = image
+                                self.profileImageView.image = image
+                            })
+                            
+                        }
                        
                         print("pet has no image")
                     }

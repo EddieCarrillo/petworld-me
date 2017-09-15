@@ -16,7 +16,8 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var commentTextField: UITextField!
     
    var comments: [Comment] = []
-    var keyboardHeight: CGFloat = 0.0
+   var keyboardHeight: CGFloat = 0.0
+   
     
     //The post that comment is being reffered by
     var post: Post?
@@ -59,42 +60,19 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
 
     @IBAction func onPostButtonTapped(_ sender: Any) {
-        
+        let api = NetworkAPI.sharedInstance
         //Create new comment an init member fields
         
         let newComment = Comment(text: self.commentTextField.text!, authorId: (Pet.currentPet()?.objectId)!, postId: (self.post?.objectId!)!)
         //Actual object links for local use
         newComment.author = Pet.currentPet()
         newComment.post = self.post
-        
-        //Create link (relationship) from Post -> Comment
-        if let post = self.post {
-            if post.comments == nil {
-                post.comments = [newComment]
-            }else{
-                post.comments?.append(newComment)
-            }
+    
             //Autmatically update comments locally.
             comments.append(newComment)
-            
-            self.tableView.reloadData()
-
-
-//            //When the post is finished updating then udpdate the comment to avoid hanging/ deadlock.
-//            NetworkAPI.update(post: post, withResult: { (success: Bool, error: Error?) in
-//                
-//                self.updateComment(comment: newComment)
-//                
-//                if (success){
-//                    print("updated post with new comments")
-//                }else{
-//                    print(error)
-//                    
-//                }
-//            
-//            })
-            
-        }
+        
+        self.createComment(comment: newComment)
+        
         self.commentTextField.text = ""
         self.commentTextField.endEditing(true)
     }
@@ -168,28 +146,23 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
      
         cell.comment =  comment
        
-        
-        
         return cell
         
     }
     
     
       
-    func updateComment(comment: Comment){
-        
-//        NetworkAPI.postComment(comment: comment) { (success: Bool, error: Error?) in
-//            if let error = error{
-//                print("Could not save comment...\n\n\(error)")
-//                //Do some kind of error handling...
-//            }else{
-//                if (success){
-//                    print("saved comment!")
-//                    
-//                    
-//                }
-//            }
-//        }
+    func createComment(comment: Comment){
+        let api = NetworkAPI.sharedInstance
+        api.postComment(comment: comment) { (succeeded: Bool?, error: Error?) in
+            if let error = error {
+                 print("[ERROR]: \(error)")
+            }else if let succeeded = succeeded {
+                if succeeded {
+                    print("Successfully created comment!")
+                }
+            }
+        }
     }
 }
 

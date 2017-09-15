@@ -1,4 +1,4 @@
-    //
+   //
 //  NetworkAPI.swift
 //  PetWorld
 //
@@ -63,9 +63,14 @@ class NetworkAPI: NSObject {
     
 
     
-     func loadPicture(imageFile: MediaFile, successBlock: ((UIImage)->Void)? ) ->UIImage?{
+     func loadPicture(imageFile: MediaFile?, successBlock: ((UIImage)->Void)? ) ->UIImage?{
+        guard let imageFile = imageFile else  {
+            print("No image")
+            return nil
+        }
         FileAPI.get(imageId: imageFile.objectId!, success: { (image: UIImage) in
             if let successBlock = successBlock{
+                imageFile.image = image
                 successBlock(image)
             }
         }) { (error: Error) in
@@ -92,7 +97,11 @@ class NetworkAPI: NSObject {
             if let error = error{
                 errorHandler(error)
             }else if let pets = pets{
-                finishedDownloading(pets)
+                for pet in pets {
+                    self.loadPicture(imageFile: pet.imageFile, successBlock: { (image: UIImage) in
+                        finishedDownloading(pets)
+                    })
+                }
             }
         }
         
@@ -106,7 +115,7 @@ class NetworkAPI: NSObject {
 //    
     
      func getHomeFeed(numPosts: Int, forPet: Pet,  successHandler: @escaping ([Post])->(),  errorHandler: ((Error)->())?){
-        guard let keys: LazyMapCollection<Dictionary<String, Pet>, String> = forPet.following?.keys else {
+        guard let keys: LazyMapCollection<Dictionary<String, String>, String> = forPet.followingId?.keys else {
             
             if let errorHandler = errorHandler{
                 errorHandler(NSError(domain: "User has no followers", code: 404, userInfo: nil))
@@ -120,6 +129,7 @@ class NetworkAPI: NSObject {
 
         
         query.whereKey(key: "author" , containedIn: following)
+        query.includeKey(key: "author")
         
         PostsAPI.getPosts(query: query) { (posts: [Post]?, error: Error?) in
             if let error = error{
@@ -127,7 +137,14 @@ class NetworkAPI: NSObject {
                     errorHandler(error)
                 }
             }else if let posts = posts{
-                 successHandler(posts)
+                successHandler(posts)
+//                for post in posts {
+//                    self.loadPicture(imageFile: post.mediaFile, successBlock: { (image: UIImage) in
+//                        post.image = image
+//                        successHandler(posts)
+//
+//                    })
+//                }
             }
         }
         

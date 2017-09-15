@@ -116,12 +116,16 @@ class MyPostViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func loadPosts(){
-        
+        let networkAPI = NetworkAPI.sharedInstance
         isLoading = true
+
+      guard let currentPet = Pet.currentPet() else {
+          print("Could not load current pet")
+         return;
+      }
         
         
-        
-        NetworkAPI.getPosts(numPosts: 20, forPet: pet!, successHandler: { (posts:[Post]) in
+        networkAPI.getPosts(numPosts: 20, forPet: currentPet, successHandler: { (posts:[Post]) in
             self.posts = posts
             self.isLoading  = false
             self.collectionView.reloadData()
@@ -169,8 +173,10 @@ class MyPostViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func loadComments(forPost: Post){
+        let networkAPI = NetworkAPI.sharedInstance
+        
         self.isLoadingComments = true
-        NetworkAPI.getComments(withPost: forPost, populateFields: true, successHandler: { (comments: [Comment]) in
+        networkAPI.getComments(withPost: forPost, populateFields: true, successHandler: { (comments: [Comment]) in
             
             forPost.comments = comments
             self.isLoadingComments = false

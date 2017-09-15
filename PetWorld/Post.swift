@@ -62,14 +62,25 @@ init(jsonMap: [String: Any]){
     }
     
     if let mediaId = jsonMap["media"] as? String{
+        let mediaFile = MediaFile()
+        mediaFile.objectId = mediaId
+        self.mediaFile = mediaFile
         self.mediaId = mediaId
     }
     
-    if let authorId = jsonMap["author"] as? String{
+    if let authorId = jsonMap["author"] as? String{ // Unpopulated pet
          self.authorId = authorId
+    }else if let authorMap = jsonMap["author"] as? [String: Any]{ // Populated pet
+        let author = Pet(jsonMap: authorMap)
+        self.author = author
+        self.authorId = author.objectId
+    }
+    if let objectId = jsonMap["_id"] as? String     {
+        self.objectId = objectId
     }
 }
-
+    
+    
 
 func toJson() -> Data?{
     
@@ -84,6 +95,13 @@ func toJson() -> Data?{
     
 
 }
+    
+    
+    
+    func addComment(comment: Comment){
+        comment.post = self
+        comment.postId = self.objectId
+    }
 
 }
 

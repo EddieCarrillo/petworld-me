@@ -22,45 +22,39 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func onLoginTap(_ sender: UIButton) {
-        
+        let api = NetworkAPI.sharedInstance
         
         updateErrorDisplay(showErrorDisplay: false)
         
         
         let username = usernameTextField.text ?? ""
         let password = passwordTextField.text ?? ""
+        api.login(with: username, and: password) { (isValid: Bool, error: Error?) in
+            OperationQueue.main.addOperation({ 
+                if let error = error {
+                    print("[ERROR]: \(error)")
+                    self.errorDisplay.text = "Trouble logging in. Check internet connection and try again."
+                    self.updateErrorDisplay(showErrorDisplay: true)
+                }else if isValid {
+                    self.performSegue(withIdentifier: "HomeSegue", sender: nil)
+                }else {
+                    self.errorDisplay.text = "Trouble logging in. Please try again."
+                    self.updateErrorDisplay(showErrorDisplay: true)
+                    //Try again upadate the GUI
+                }
+            })
+          
+        }
         
-    
         
+       // oldLogin()
         
-//        //Actually login user
-//        PFUser.logInWithUsername(inBackground: username, password: password) { (user: PFUser?, error: Error?) in
-//            if (user != nil){
-//                NetworkAPI.loadPets(finishedDownloading: { (pets: [Pet]) in
-//                    if (pets.count > 0){
-//                        //Save all the pets here!
-//                        Pet.pets = pets
-//                    }
-//                })
-//                
-//                print("You are logged in!!!")
-//                self.performSegue(withIdentifier: "HomeSegue", sender: nil)
-//            }else if let error = error{
-//                let pfError = error as! NSError
-//                
-//                if pfError.code == 101{
-//                    print("Bad User/Pass Combination")
-//                    self.errorDisplay.text = "Bad User/Pass Combination"
-//                }
-//                
-//                self.updateErrorDisplay(showErrorDisplay: true)
-//                
-//                
-//                
-//            }
-//        }
+
         
     }
+    
+    
+  
     
     
     
@@ -149,7 +143,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     }
     
-  
     
    
 

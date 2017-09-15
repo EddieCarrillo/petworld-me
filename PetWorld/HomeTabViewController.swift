@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class HomeTabViewController: UITabBarController, UITabBarControllerDelegate {
     
@@ -19,7 +20,7 @@ class HomeTabViewController: UITabBarController, UITabBarControllerDelegate {
         self.tabBar.unselectedItemTintColor = UIColor.gray
         self.tabBar.tintColor = ColorPalette.primary
         self.tabBar.barTintColor = UIColor.white
-        
+      
 //        if let viewControllers = self.viewControllers{
 //            for viewController in viewControllers{
 //                if viewController is PostsViewController{
@@ -59,6 +60,22 @@ class HomeTabViewController: UITabBarController, UITabBarControllerDelegate {
         return true
         
         
+    }
+    
+    
+    
+    func setupNotifcation(){
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: NetworkAPI.needLoginNotification), object: nil, queue: OperationQueue.main) { (notification: Notification) in
+            //Trigger login screen
+            self.dismiss(animated: true, completion: {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+                loginViewController.present(loginViewController, animated: true, completion: { 
+                    self.dismiss(animated: true, completion: nil)
+                })
+                
+            })
+        }
     }
 
 

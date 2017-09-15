@@ -13,12 +13,17 @@ class User: NSObject {
     
    static  let auth_token_key = "auth_token"
     static var current: User?
-    var username: String
-    var email: String
+    
+    
+    var username: String?
+    
+    var email: String?
     //Not super secure TODO: Fix this security issue
-    var password: String
+    var password: String?
     
     var objectId: String?
+    
+    var loggedIn: Bool = false
     
     
     
@@ -30,11 +35,30 @@ class User: NSObject {
         self.password = password
     }
     
+    init (jsonMap: [String: Any]){
+        
+        print("JSON: \(jsonMap)")
+        if let username = jsonMap["username"] {
+            self.username = username as? String
+        }
+        
+        if let password = jsonMap["password"]{
+            self.password = password as? String
+        }
+        
+        if let email = jsonMap["email"]{
+            self.email = email as? String
+        }
+        
+        if let objectId = jsonMap["_id"]{
+            self.objectId = objectId as? String
+        }
+    }
+    
     
     
     func toJson() -> Data?{
         
-       
         let dictionary =  ["username": self.username, "email": self.email, "password": self.password ]
         
         
@@ -47,6 +71,12 @@ class User: NSObject {
             return nil
         }
      
+    }
+    
+    //TODO: Finish login
+    func login(){
+        
+        
     }
     
     

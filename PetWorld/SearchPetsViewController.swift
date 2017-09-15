@@ -114,7 +114,12 @@ var textField = self.searchBar.value(forKey: "searchField") as? UITextField
         if (!searchText.isEmpty){
             networkAPI.searchPets(withName: searchText, successHandler: { (pets: [Pet]) -> (Void) in
                 self.pets = pets
-                self.tableView.reloadData()
+                for pet in pets {
+                    networkAPI.loadPicture(imageFile: pet.imageFile, successBlock: { (image: UIImage) in
+                        self.tableView.reloadData()
+
+                    })
+                }
                 print("Pets loaded:\n\(pets)")
                 
             }) { (error: Error) in

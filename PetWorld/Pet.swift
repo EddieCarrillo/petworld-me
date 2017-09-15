@@ -23,6 +23,11 @@ class Pet: NSObject  {
     //Background profile picture
     var backgroundImage: UIImage?
     
+    var imageFile: MediaFile?
+    
+    
+    var backgroundImageFile: MediaFile?
+    
      var name: String?
     
      var breed: String?
@@ -65,14 +70,62 @@ class Pet: NSObject  {
     var objectId: String?
     
      init(jsonMap: [String: Any]){
-        print("json to be deconstructed: \(jsonMap)")
         self.ownerId = jsonMap["owner"] as? String
         self.objectId = jsonMap["_id"] as? String
         self.name = jsonMap["name"] as? String
-        self.ownerId = jsonMap["owner"] as? String
-        self.objectId = jsonMap["_id"] as? String
-        self.name = jsonMap["name"] as? String
+        self.breed = jsonMap["breed"] as? String
+        self.species = jsonMap["species"] as? String
+        self.weight = jsonMap["weight"] as? NSNumber
+        self.height = jsonMap["height"] as? NSNumber
+        self.age = jsonMap["age"] as? NSNumber
+        self.hobby = jsonMap["hobby"] as? String
+        self.toy = jsonMap["toy"] as? String
+        self.gender = jsonMap["gender"] as? String
+        self.followersCount = jsonMap["followersCount"] as? NSNumber
+        
+        self.followersId = [:]
+        if let followIdList = jsonMap["followers"] as? [String] {
+            
+            for followerId in followIdList {
+                self.followersId?[followerId] = followerId
+            }
+            
+        }
+        
+        self.followingId = [:]
+        if let followingIdList = jsonMap["following"] as? [String] {
+            for followingId in followingIdList {
+                self.followingId?[followingId] = followingId
+            }
+        }
+        
+        self.likedPostsId = [:]
+        if let likedPostIdList = jsonMap["likedPosts"] as? [String] {
+            for likedPostId in likedPostIdList {
+                self.likedPostsId?[likedPostId] = likedPostId
+            }
+        }
+        
+        if let imageId = jsonMap["image"] as? String {
+            let imageFile = MediaFile()
+            imageFile.objectId = imageId
+            self.imageFile = imageFile
+        }
+        
+        
+        
+        self.miniBio = jsonMap["miniBio"] as? String
+        
+        self.longBio = jsonMap["longBio"] as? String
+        
+        
+        
+        
     }
+    
+    
+    
+    
     
     init(name: String, ownerId: String){
          self.name = name
@@ -146,6 +199,10 @@ class Pet: NSObject  {
             dictionary["name"] = name
         }
         
+        if let image = self.imageFile?.objectId {
+            dictionary["image"]  = image
+        }
+        
         if let ownerId = self.ownerId{
            dictionary["owner"] = ownerId
         }
@@ -179,7 +236,7 @@ class Pet: NSObject  {
         }
         
         if let gender = self.gender{
-            dictionary["geneder"] = gender
+            dictionary["gender"] = gender
         }
         
         if let followersCount = self.followersCount{
@@ -191,11 +248,13 @@ class Pet: NSObject  {
         }
         
         if let followers = self.followersId{
-            dictionary["followers"] = followingCount
+            dictionary["followers"] = followers
         }
         
         if let following = self.followingId{
-            dictionary["following"] = following
+             let keys: LazyMapCollection<Dictionary<String, String>, String> = following.keys
+            let followIdKeys: [String] = Array(keys)
+            dictionary["following"] = followIdKeys
         }
         
         if let miniBio = self.miniBio{
@@ -210,6 +269,7 @@ class Pet: NSObject  {
             dictionary["likedPosts"] = likedPostsId
         }
         
+        print("jsonBody: \(dictionary)")
         var jsonBody: Data?
         
         do{
@@ -222,16 +282,7 @@ class Pet: NSObject  {
         
         return jsonBody
         
-        
-        
-        
     }
-    
-    
-    
-    
-    
-   
     
     func isFollowing(pet: Pet) -> Bool{
         if self.following == nil{
@@ -243,6 +294,36 @@ class Pet: NSObject  {
         }
         
         return self.following![pet.objectId!] != nil
+    }
+    
+    func addFollowing(pet toFollow: Pet){
+        //Perform the follow locally and not by ID
+        self.followingId?[toFollow.objectId!] = toFollow.objectId
+        toFollow.followersId?[self.objectId!] = self.objectId
+        self.following?[toFollow.objectId!] = toFollow
+        toFollow.followers?[self.objectId!] = self
+        
+    }
+    
+    func removeFollowing(pet toUnfollow: Pet){
+         //Perform the unfollow locally and not by ID
+        self.followingId?.removeValue(forKey: toUnfollow.objectId!)
+        self.following?.removeValue(forKey: toUnfollow.objectId!)
+        toUnfollow.followersId?.removeValue(forKey: self.objectId!)
+        toUnfollow.followers?.removeValue(forKey: self.objectId!)
+        
+    }
+    
+    func likePost(post: Post){
+        //Perform the like locally and not by ID
+        self.likedPosts?[post.objectId!] = post
+        post.likedBy?[self.objectId!] = self
+    
+    }
+    
+    func unLikePost(post: Post){
+        self.likedPosts?.removeValue(forKey: post.objectId!)
+        post.likedBy?.removeValue(forKey: self.objectId!)
     }
     
     

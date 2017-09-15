@@ -39,6 +39,28 @@ class AuthTests: XCTestCase {
     }
     
     
+    func testCheckValidToken() {
+          let expecting = expectation(description: "Should not return an error")
+        
+        AuthAPI.checkValid(token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWE0ODkwOWIzYjgxZjEzMDQxNDc3OTgiLCJpYXQiOjE1MDUxNjUwNjAsImV4cCI6MTUwNTc2OTg2MH0.qda__vQj_VSUdijTTa7o33LA7zI_EQFFYSVWwmefG6c") { (freshUser: User?, error: Error?) in
+            if let error = error {
+                XCTFail("[ERROR] \(error)")
+            }else if let user = freshUser {
+                expecting.fulfill()
+            }else {
+                XCTFail("Token is invalid")
+            }
+        }
+        
+        
+        waitForExpectations(timeout: 4) { (error: Error?) in
+            if let error = error {
+                print("[ERROR]: \(error)")
+            }
+        }
+    }
+    
+    
    
     
 }

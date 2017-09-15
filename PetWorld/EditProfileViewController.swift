@@ -218,23 +218,32 @@ class EditProfileViewController: UITableViewController, UIImagePickerControllerD
     
     func saveData(){
         if let pet = Pet.currentPet(){
-            
+            let api = NetworkAPI.sharedInstance
             pet.breed = newBreed
             pet.species = newSpecies
             pet.age = newAge
             pet.weight = newWeight
             pet.height = newHeight
             pet.longBio = newBio
-            pet.image = newImage
             
-            // print(pet)
-//            pet.saveInBackground { (bool: Bool, error: Error?) in
-//                if let error = error{
-//                    print("error: \(error.localizedDescription)")
-//                }else{
-//                    print("finished saving!!!!")
-//                }
-//            }
+            
+            api.uploadImageFile(image: self.newImage!, successHandler: { (mediaFile: MediaFile) in
+                pet.imageFile = mediaFile
+                
+                api.update(pet: pet, successHandler: {
+                    
+                    print("Successfully saved pet")
+                }, errorHandler: { (error:Error) in
+                    print("[ERROR] \(error)")
+                })
+                
+            }, errorHandler: { (error: Error) in
+                print("[ERROR]: \(error)")
+            })
+            
+          
+            
+            
             
             
         

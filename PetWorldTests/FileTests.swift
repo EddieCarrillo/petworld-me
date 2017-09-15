@@ -17,7 +17,8 @@ class FileTests: XCTestCase {
         let expecting = expectation(description: "Server should say \"ok\" when finished uploading image")
         let imageName = "german_sheperd"
         let image = UIImage(named: imageName)
-        FileAPI.post(image: image!, success: { 
+        FileAPI.post(image: image!, success: { (fileId: String) in
+            print("[FILEID]: \(fileId)")
             expecting.fulfill()
         }) { (error: Error) in
 

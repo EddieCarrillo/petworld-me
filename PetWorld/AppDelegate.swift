@@ -16,60 +16,96 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
   
 
     var window: UIWindow?
+    //First argument is token, Second argument is closure with 'Any' arguen
     
-   
+    let homeViewControllerIdentifier: String = "TabBarController"
+    let loginViewControllerIdentifier: String = "LoginViewController"
+    let loadingViewControllerIdentifier: String = "LoadingViewController"
+    let mainStoryboardName = "Main"
     
- 
-    
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-    //    PFUser.logOut()
+        let storyboard = UIStoryboard.init(name: mainStoryboardName, bundle: nil)
         
-      //  mockData()
+
+ let loadingViewController = storyboard.instantiateViewController(withIdentifier: loadingViewControllerIdentifier)
+ window?.rootViewController = loadingViewController
+ 
+        let api = NetworkAPI.sharedInstance
         
-       // /* // UNCOMMENT TO DIRECTLY ACCESS LOGIN/SIGNUP
-            
+        api.isTokenValid { (isValid: Bool) in
+            if isValid {
+                //Then go to normal app
+                let homeViewController = storyboard.instantiateViewController(withIdentifier:"\(self.homeViewControllerIdentifier)")
+                api.loadPets(finishedDownloading: { (pets: [Pet]) in
+                    Pet.pets = pets
+                    self.window?.rootViewController = homeViewController
+                },errorHandler: { (error: Error) in
+                    print("Trouble loading pets! \(error)")
+                })
+            }else /* If Invalid token*/ {
+                //Then go to login screen
+                let loginViewController = storyboard.instantiateViewController(withIdentifier: self.loginViewControllerIdentifier)
+                self.window?.rootViewController = loginViewController
+            }
+        }
+        
+        
+        
+        
+        return true
+    }
+    
+    func oldStartUp() -> Bool{
+        //    PFUser.logOut()
+        
+        //  mockData()
+        
+        // /* // UNCOMMENT TO DIRECTLY ACCESS LOGIN/SIGNUP
+        
         
         
         if (User.current != nil){
             
             
-          let storyboard = UIStoryboard(name: "Main", bundle: nil)/*
-            let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)/*
+             let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+             
+             vc.
+             tabBar.barTintColor = TextManipulation.themeColor()
+             vc.tabBar.tintColor = TextManipulation.secondaryColor()
+             
+             window?.rootViewController = vc*/
             
-            vc.tabBar.barTintColor = TextManipulation.themeColor()
-            vc.tabBar.tintColor = TextManipulation.secondaryColor()
-            
-            window?.rootViewController = vc*/
-            
-           /* let loadingViewController = storyboard.instantiateViewController(withIdentifier: "LoadingViewController") as! LoadingViewController
-            
-            window?.rootViewController = loadingViewController*/
+            /* let loadingViewController = storyboard.instantiateViewController(withIdentifier: "LoadingViewController") as! LoadingViewController
+             
+             window?.rootViewController = loadingViewController*/
             
             let homeTabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
-      
+            let networkAPI = NetworkAPI.sharedInstance
             
-            NetworkAPI.loadPets(finishedDownloading: { (pets: [Pet]) in
-                if (pets.count > 0){
-                    //Save all the pets here!
-                    Pet.pets = pets
-                    self.window?.rootViewController?.dismiss(animated: true, completion: nil)
-                    
-                    self.window?.rootViewController = homeTabBarController
-                    
-                    
-                }else{
-                    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-                    let loginViewController = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
-                    
-                    self.window?.rootViewController = loginViewController
-                }
+            networkAPI.loadPets(finishedDownloading: { (pets: [Pet]) in
+                //If we can load the pets then open the normal app functions
+                //Save all the pets here!
+                Pet.pets = pets
+                self.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                
+                self.window?.rootViewController = homeTabBarController
+                
+                
+                
+            }, errorHandler: { (error: Error) in
+                //If we could not get the pets then login
+                let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                let loginViewController = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
+                
+                self.window?.rootViewController = loginViewController
+                
             })
             
         }else{
-          let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             let loginViewController = storyBoard.instantiateViewController(withIdentifier: "LoginViewController")
             
             window?.rootViewController = loginViewController
@@ -82,7 +118,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         
         return true
     }
-    
     func mockData(){
    /*      let user1 = User()
         user1.username = "user1"

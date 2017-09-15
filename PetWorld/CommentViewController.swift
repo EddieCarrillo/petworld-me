@@ -71,10 +71,11 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
             //Autmatically update comments locally.
             comments.append(newComment)
         
-        self.createComment(comment: newComment)
         
+        self.createComment(comment: newComment)
         self.commentTextField.text = ""
         self.commentTextField.endEditing(true)
+        self.tableView.reloadData()
     }
     
     

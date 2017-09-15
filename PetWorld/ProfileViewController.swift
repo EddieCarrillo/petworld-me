@@ -157,6 +157,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     
     
     func onFollowTapped() {
+        let networkAPI = NetworkAPI.sharedInstance
         let isFollowing = self.headerView.rightButton.isSelected
         
         let currentPet = Pet.currentPet()!
@@ -166,11 +167,15 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         if isFollowing == true{
             if let pet = self.pet{
                 self.headerView.rightButton.isSelected = false
-                
-                NetworkAPI.unfollow(follower: currentPet, followee: pet, completionHandler: {
-                    print("Successful unfollow!")
+                currentPet.removeFollowing(pet: pet)
+                networkAPI.update(pet: pet, successHandler: {
+                    networkAPI.update(pet: currentPet, successHandler: {
+                        
+                    }, errorHandler: { (error: Error) in
+                        print("[ERROR]: \(error)")
+                    })
                 }, errorHandler: { (error: Error) in
-                    print("Problem unfollowing!!!")
+                    print("[ERROR]: \(error)")
                 })
             }
           
@@ -179,11 +184,15 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIImagePicke
             
             if let pet = self.pet{
                 self.headerView.rightButton.isSelected = true
-                
-                NetworkAPI.follow(follower: currentPet, followee: pet, completionHandler: {
-                    print("Successful follow.")
+                currentPet.addFollowing(pet: pet)
+                networkAPI.update(pet: pet, successHandler: {
+                    networkAPI.update(pet: currentPet, successHandler: {
+                        
+                    }, errorHandler: { (error: Error) in
+                        print("[ERROR]: \(error)")
+                    })
                 }, errorHandler: { (error: Error) in
-                    print("Unsuccessful follow.")
+                    print("[ERROR]: \(error)")
                 })
             }
            
@@ -310,6 +319,15 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         if let pet = self.pet{
             self.profileView.updatePetUI(pet: pet)
         }
+    
+    }
+    
+    
+    func updateFollow(follower: Pet, followee: Pet){
+    
+    }
+    
+    func updateUnfollow(follower: Pet, followee: Pet){
     
     }
  

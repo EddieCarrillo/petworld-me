@@ -122,12 +122,12 @@ class PetTests: XCTestCase {
     
     func testGetPetWithId(){
 
-        let lemonId = "59aef169256ec2132ea6a395"
+        let spikeId = "59a4890ab3b81f130414779d"
         
 
 
         let expecting = expectation(description: "Should return a pet object with a given id")
-        PetsAPI.getPet(with: lemonId) { (pet: Pet?, error: Error?) in
+        PetsAPI.getPet(with: spikeId) { (pet: Pet?, error: Error?) in
             
             if let error = error{
                 print(error)
@@ -136,13 +136,14 @@ class PetTests: XCTestCase {
                 //Pets were returned (not a failure)
                 if let name = pet.name{
                     print("name: \(name)")
+                    expecting.fulfill()
                 }
                 
             }else{
                 XCTFail("No pets returned")
             }
             
-            expecting.fulfill()
+//            expecting.fulfill()
         }
         waitForExpectations(timeout: 10) { (error: Error?) in
             if let error = error{

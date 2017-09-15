@@ -63,7 +63,7 @@ class ProfileView: UIView {
     
     @IBAction func onFollowTapped(_ sender: Any) {
         let isFollowing = self.followButton.isSelected
-        
+        let networkAPI = NetworkAPI.sharedInstance
         let currentPet = Pet.currentPet()!
         
         
@@ -71,20 +71,29 @@ class ProfileView: UIView {
         if isFollowing == true{
             
             self.followButton.isSelected = false
-
-            NetworkAPI.unfollow(follower: currentPet, followee: pet, completionHandler: {
-                print("Successful unfollow!")
+            currentPet.removeFollowing(pet: pet)
+            networkAPI.update(pet: pet, successHandler: {
+                networkAPI.update(pet: currentPet, successHandler: {
+                    
+                }, errorHandler: { (error: Error) in
+                    print("[ERROR]: \(error)")
+                })
             }, errorHandler: { (error: Error) in
-                print("Problem unfollowing!!!")
+                print("[ERROR]: \(error)")
             })
         
         }else{
             self.followButton.isSelected = true
             
-            NetworkAPI.follow(follower: currentPet, followee: pet, completionHandler: {
-                print("Successful follow.")
+            currentPet.addFollowing(pet: pet)
+            networkAPI.update(pet: pet, successHandler: {
+                networkAPI.update(pet: currentPet, successHandler: {
+                    
+                }, errorHandler: { (error: Error) in
+                    print("[ERROR]: \(error)")
+                })
             }, errorHandler: { (error: Error) in
-                print("Unsuccessful follow.")
+                print("[ERROR]: \(error)")
             })
             
         }
@@ -182,7 +191,7 @@ class ProfileView: UIView {
     
     func updateProfilePicture(pet: Pet){
         //Extract the image and put on the scren
-        if let profilePicture = pet.image{
+        if let profilePicture = pet.imageFile?.image{
             profilePictureImageView.image = profilePicture
         }
     }

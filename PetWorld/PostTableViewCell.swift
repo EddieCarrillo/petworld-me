@@ -57,26 +57,35 @@ class PostTableViewCell: UITableViewCell{
     
     @IBAction func onFollowButtonTapped(_ sender: UIButton) {
         
+        let networkAPI = NetworkAPI.sharedInstance
         let currentPet = Pet.currentPet()
         let cell = sender.superview?.superview as! PostTableViewCell
         
         let postOwner  = cell.post.author!
         if let currentPet = Pet.currentPet(){
             if self.followButton.isSelected{
-                NetworkAPI.unfollow(follower: currentPet, followee: postOwner, completionHandler: {
-                    print("Succesfully unfollowed")
+                currentPet.removeFollowing(pet: postOwner)
+                networkAPI.update(pet: postOwner, successHandler: {
+                    networkAPI.update(pet: currentPet, successHandler: {
+                        
+                    }, errorHandler: { (error: Error) in
+                        print("[ERROR]: \(error)")
+                    })
                 }, errorHandler: { (error: Error) in
-                    print("Unsucessful unfollow")
+                    print("[ERROR]: \(error)")
                 })
                 
                 self.followButton.isSelected = false
             }else{
-                NetworkAPI.follow(follower: currentPet, followee: postOwner, completionHandler: {
-                    print("Successful follow")
-                    
+                currentPet.addFollowing(pet: postOwner)
+                networkAPI.update(pet: postOwner, successHandler: {
+                    networkAPI.update(pet: currentPet, successHandler: {
+                        
+                    }, errorHandler: { (error: Error) in
+                        print("[ERROR]: \(error)")
+                    })
                 }, errorHandler: { (error: Error) in
-                    
-                    print("Unsucessful follow.")
+                    print("[ERROR]: \(error)")
                 })
                 
                 self.followButton.isSelected = true
@@ -117,17 +126,18 @@ class PostTableViewCell: UITableViewCell{
     }
 
     func updateMedia(){
-//        if let image = post.image{
-//            self.photoImage.image = image
-//        }else{
-//            if let media = post.media{
-//                NetworkAPI.loadPicture(imageFile: media, successBlock: { (image: UIImage) in
-//                    self.post.image = image
-//                    self.photoImage.image = image
-//                })
-//            }
-//           
-//        }
+        let api = NetworkAPI.sharedInstance
+        if let image = post.mediaFile?.image{
+            self.photoImage.image = image
+        }else{
+            if let media = post.mediaFile{
+                api.loadPicture(imageFile: media, successBlock: { (image: UIImage) in
+                    self.post.image = image
+                    self.photoImage.image = image
+                })
+            }
+           
+        }
     }
     
     
@@ -210,17 +220,25 @@ class PostTableViewCell: UITableViewCell{
 
 
    func updateProfilePicture(){
+    let api = NetworkAPI.sharedInstance
     self.profilePictureButton.layer.masksToBounds = true
     self.profilePictureButton.layer.cornerRadius = profilePictureButton.frame.width/2
     
     if let pet = post.author{
-            if let picture = pet.image{
+            if let picture = pet.imageFile?.image{
                 //self.profilePictureButton.imageView?.image = picture
                 self.profilePictureButton.setImage(picture, for: .normal)
                 //self.profilePictureButton.setImage(picture, for: .selected)
                 //self.profilePictureButton.setImage(picture, for: .focused)
                // self.profilePictureButton.setBackgroundImage(picture, for: .normal)
-            }
+            }else{
+                if let media = pet.imageFile{
+                    api.loadPicture(imageFile: pet.imageFile, successBlock: { (image: UIImage) in
+                        self.profilePictureButton.setImage(image , for: .normal)
+                    })
+                }
+                
+        }
         
        
     }

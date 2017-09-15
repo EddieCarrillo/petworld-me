@@ -285,15 +285,8 @@ class Pet: NSObject  {
     }
     
     func isFollowing(pet: Pet) -> Bool{
-        if self.following == nil{
-            following = [:]
-        }
         
-        if pet.followers == nil{
-            followers = [:]
-        }
-        
-        return self.following![pet.objectId!] != nil
+        return self.followingId![pet.objectId!] != nil
     }
     
     func addFollowing(pet toFollow: Pet){

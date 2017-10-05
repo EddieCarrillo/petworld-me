@@ -47,11 +47,15 @@ class FileAPI{
                     let error = NSError(domain: "Bad request", code: code, userInfo: nil)
                     fail(error)
                 }else if let data = data{
+                    //FIXED Threading bug.
                     let queue = OperationQueue()
                     queue.addOperation({ 
                         let image = UIImage(data: data)
                         print("sucess")
-                        success(image!)
+                        OperationQueue.main.addOperation {
+                           success(image!)
+                        }
+                        
                     })
                    
                 }
